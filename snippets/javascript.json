@@ -1,17 +1,16 @@
 {
-	"Log object": {
-		"prefix": "log",
-		"body": "console.log({ ${1}: ${0:${1}} })",
-		"description": "Log object"
+	"log object": {
+		  "prefix": "log",
+		  "body": [
+			    "console.log({ ${1}: ${0:${1}} })"
+			  ],
+		  "description": ""
 	},
-	"Stringify anything": {
-		"prefix": "json",
-		"body": "JSON.stringify(${0}, null, 2)",
-		"description": "Stringify anything"
-	},
-	"Simple function": {
-		"prefix": "func",
-		"body": "function(${1}) {\n\t${0}\n}",
-		"description": "Simple function"
+	"json stringify": {
+		  "prefix": "stringify",
+		  "body": [
+			    "JSON.stringify(${0}, null, 2)"
+			  ],
+		  "description": ""
 	}
 }

@@ -132,7 +132,7 @@ require("mini.surround").setup({
 --
 add("echasnovski/mini.bracketed")
 require("mini.bracketed").setup({
-	-- buffer
+	buffer = { suffix = "" },
 	comment = { suffix = "" },
 	-- conflict marker
 	diagnostic = { suffix = "" },
@@ -142,7 +142,7 @@ require("mini.bracketed").setup({
 	location = { suffix = "" },
 	oldfile = { suffix = "" },
 	treesitter = { suffix = "" },
-	-- undo
+	undo = { suffix = "" },
 	-- window
 	yank = { suffix = "" },
 })
@@ -267,23 +267,6 @@ hipatterns.setup({
 		deprecate = words({ "DEPRECATE", "deprecate" }, "MiniHipatternsDeprecate"),
 	},
 })
-
---
--- mini.completion
---
--- add("echasnovski/mini.completion")
--- require("mini.completion").setup({
--- 	window = {
--- 		info = { border = "single" },
--- 		signature = { border = "single" },
--- 	},
-
--- 	fallback_action = "<C-x><C-n>",
-
--- 	mappings = {
--- 		force_twostep = "<C-h>",
--- 	},
--- })
 
 --
 -- mini.tabline
