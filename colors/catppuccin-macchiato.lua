@@ -467,7 +467,7 @@ hi(0, "MiniTablineVisible", { link = "TabLine" })
 --
 -- treesitter-context
 --
-hi(0, "TreesitterContextSeparator", { fg = "#8aadf4" })
+hi(0, "TreesitterContextSeparator", { fg = '#8aadf4' })
 
 --
 -- Filetypes

@@ -3,6 +3,7 @@ local add = MiniDeps.add
 vim.diagnostic.config({
 	float = { border = "single" },
 	update_in_insert = true,
+	virtual_text = false,
 	virtual_lines = {
 		current_line = false,
 	},
