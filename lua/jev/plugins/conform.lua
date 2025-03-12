@@ -16,15 +16,14 @@ conform.setup({
 		ocaml = { "ocamlformat" },
 	},
 
+	-- Default format options
 	default_format_opts = {
 		async = true,
 		lsp_format = "fallback",
 	},
 
-	-- Format on save
-	format_on_save = {
-		timeout = 500,
-	},
+	-- Format after save to avoid performance issues with large files
+	format_after_save = {},
 })
 
 -- Mappings
