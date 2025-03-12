@@ -1,0 +1,33 @@
+{
+	"Log object": {
+		"prefix": "log",
+		"body": "console.log({ ${1}: ${0:${1}} })",
+		"description": "Log object"
+	},
+	"Stringify anything": {
+		"prefix": "json",
+		"body": "JSON.stringify(${0}, null, 2)",
+		"description": "Stringify anything"
+	},
+	"Simple function": {
+		"prefix": "func",
+		"body": ["function($1)", "{", "\t$0", "}"],
+		"description": "Simple function"
+	},
+	"functional component": {
+		"prefix": "fc",
+		"body": [
+			"interface I$1Props {",
+			"}",
+			"",
+			"export const $1: React.FC<I$1Props> = ({}) => {",
+			"\treturn (",
+			"\t\t<div>",
+			"\t\t\t$0",
+			"\t\t</div>",
+			"\t);",
+			"};"
+		],
+		"description": "functional component"
+	}
+}
