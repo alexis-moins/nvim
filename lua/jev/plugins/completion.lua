@@ -30,6 +30,6 @@ require("mini.completion").setup({
 	fallback_action = "<C-x><C-n>",
 
 	mappings = {
-		force_twostep = "<C-h>",
+		force_twostep = "<C-n>",
 	},
 })

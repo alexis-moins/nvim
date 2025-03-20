@@ -8,7 +8,8 @@ require("mini.extra").setup()
 
 -- Mappings
 keys.map("n", "<Leader>fk", MiniExtra.pickers.keymaps, "Find keymaps")
-keys.map("n", "<Leader>fs", MiniExtra.pickers.spellsuggest, "Find spelling")
+keys.map("n", "<Leader>f?", MiniExtra.pickers.commands, "Find commands")
+keys.map("n", "z=", MiniExtra.pickers.spellsuggest, "Find spelling")
 
 keys.map("n", "<C-f>", function()
 	MiniExtra.pickers.history({ scope = ":" })
@@ -45,14 +46,6 @@ keys.map("n", "<Leader>fg", MiniPick.builtin.grep_live, "Find content")
 keys.map("n", "<Leader>*", "<cmd>Pick grep pattern='<cword>'<cr>", "Grep string under cursor")
 
 --
--- mini.pairs
---
-add("echasnovski/mini.pairs")
-require("mini.pairs").setup({
-	modes = { insert = true, command = true, terminal = true },
-})
-
---
 -- mini.notify
 --
 add("echasnovski/mini.notify")
@@ -66,8 +59,10 @@ require("mini.notify").setup({
 
 	window = {
 		config = {
-			border = "rounded",
+			border = "single",
 		},
+
+		winblend = 0,
 	},
 })
 
@@ -85,47 +80,6 @@ event.autocmd("RecordingEnter", {
 })
 
 event.autocmd("RecordingLeave", { group = group, callback = MiniNotify.clear })
-
---
--- mini.comment
---
-add("echasnovski/mini.comment")
-require("mini.comment").setup({
-	options = { ignore_blank_line = true },
-})
-
---
--- mini.move
---
-add("echasnovski/mini.move")
-require("mini.move").setup({
-	mappings = {
-		-- Normal mode
-		down = "<C-J>",
-		up = "<C-K>",
-		left = "<C-H>",
-		right = "<C-L>",
-
-		-- Visual node
-		line_down = "<C-J>",
-		line_up = "<C-K>",
-		line_left = "<C-H>",
-		line_right = "<C-L>",
-	},
-})
-
---
--- mini.surrounds
---
-add("echasnovski/mini.surround")
-require("mini.surround").setup({
-	custom_surroundings = {
-		["b"] = { output = { left = "(", right = ")" } },
-		["B"] = { output = { left = "{", right = "}" } },
-		["r"] = { output = { left = "[", right = "]" } },
-	},
-	silent = true,
-})
 
 --
 -- mini.bracketed
@@ -198,52 +152,7 @@ end
 
 -- Mappings
 keys.map("n", "<Leader>sl", session("local"), "Write a local session")
-keys.map("n", "<Leader>sw", session("write"), "Write a session")
 keys.map("n", "<Leader>sr", session("read"), "Read a session")
-keys.map("n", "<Leader>sd", session("delete"), "Delete a session")
-
---
--- mini.visits
---
-add("echasnovski/mini.visits")
-require("mini.visits").setup()
-
-local LABEL = "core"
-
---- Wrapper around mini.visits functions. Returns a function that
---- behaves differently based on the given action.
----
----@param action "add"|"remove"
----@return function
-local function label(action)
-	return function()
-		if action == "add" then
-			MiniVisits.add_label(LABEL)
-		elseif action == "remove" then
-			MiniVisits.remove_label(LABEL)
-		end
-	end
-end
-
--- Mappings
-keys.map("n", "<Leader>la", label("add"), "Add to " .. LABEL)
-keys.map("n", "<Leader>lr", label("remove"), "Remove from " .. LABEL)
-
-keys.map("n", "<Leader>v", function()
-	MiniVisits.select_path(nil, { filter = LABEL })
-end, "Find labels (current)")
-keys.map("n", "<Leader>V", function()
-	MiniVisits.select_path("", { filter = LABEL })
-end, "Find labels (all)")
-
-local function cycle(direction)
-	return function()
-		MiniVisits.iterate_paths(direction, nil, { filter = LABEL })
-	end
-end
-
-keys.map("n", "]]", cycle("forward"), "Next file in " .. LABEL)
-keys.map("n", "[[", cycle("backward"), "Previous file in " .. LABEL)
 
 --
 -- mini.colors

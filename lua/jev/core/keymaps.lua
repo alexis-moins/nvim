@@ -3,8 +3,6 @@ keys.map("i", "jk", "<Esc>", "Leave insert mode")
 keys.map("n", "/", "ms/", "Search a pattern forward")
 keys.map("n", "?", "ms?", "Search a pattern backward")
 
-keys.map("n", "<C-S>", "`s", "Go back to before search")
-
 keys.map("n", "<BS>", vim.cmd.nohlsearch, "Clear search highlighting")
 keys.map("n", "<Leader>so", vim.cmd.source, "Source current file")
 
@@ -44,9 +42,11 @@ keys.map({ "n", "x" }, "gy", '"+y', "Copy (+register)")
 keys.map({ "n", "x" }, "gp", '"+p', "Paste after cursor (+register)")
 keys.map({ "n", "x" }, "gP", '"+P', "Paste before cursor (+register)")
 
--- Insert blank lines
--- keys.map("n", "[<Space>", "mzO<esc>`z", "Insert a line above cursor")
--- keys.map("n", "]<Space>", "mzo<esc>`z", "Insert a line below cursor")
+keys.map("v", "s", ":s/\\%V", "Substitute in visual mode")
+-- keys.map("n", "g.", ":%s//<c-r>./g<esc>", "Replace last search globally with last edit")
+keys.map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Replace last search globally with last edit")
+
+keys.map("n", "X", "daw", "Delete around word")
 
 keys.map("n", "[t", vim.cmd.tabnext, "Navigate to next tab page")
 keys.map("n", "]t", vim.cmd.tabprevious, "Navigate to previous tab page")

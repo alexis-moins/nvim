@@ -10,10 +10,6 @@ opt.set("signcolumn", "yes")
 -- Highlight current line
 opt.set("cursorline", true)
 
--- Line numbers
--- opt.set("number", true)
--- opt.set("relativenumber", true)
-
 -- More natural split directions
 opt.set("splitbelow", true)
 opt.set("splitright", true)
