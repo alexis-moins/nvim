@@ -9,6 +9,7 @@ vim.diagnostic.config({
 	},
 	underline = false,
 	jump = { float = true },
+	signs = false,
 })
 
 --

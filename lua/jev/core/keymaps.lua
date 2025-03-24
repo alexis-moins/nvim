@@ -42,6 +42,8 @@ keys.map({ "n", "x" }, "gy", '"+y', "Copy (+register)")
 keys.map({ "n", "x" }, "gp", '"+p', "Paste after cursor (+register)")
 keys.map({ "n", "x" }, "gP", '"+P', "Paste before cursor (+register)")
 
+keys.map("n", "=p", "p`[v`]=", "Paste and reindent")
+
 keys.map("v", "s", ":s/\\%V", "Substitute in visual mode")
 -- keys.map("n", "g.", ":%s//<c-r>./g<esc>", "Replace last search globally with last edit")
 keys.map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Replace last search globally with last edit")

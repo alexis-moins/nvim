@@ -118,70 +118,6 @@ hi(0, "@variable.builtin", { fg = "#ed8796" })
 hi(0, "Bold", { bold = true })
 hi(0, "Boolean", { fg = "#f5a97f" })
 hi(0, "Character", { fg = "#8bd5ca" })
-hi(0, "CmpBorder", { fg = "#8aadf4" })
-hi(0, "CmpItemAbbr", { fg = "#939ab7" })
-hi(0, "CmpItemAbbrDefault", { fg = "#939ab7" })
-hi(0, "CmpItemAbbrDeprecated", { fg = "#6e738d", strikethrough = true })
-hi(0, "CmpItemAbbrDeprecatedDefault", { fg = "#6e738d" })
-hi(0, "CmpItemAbbrMatch", { bold = true, fg = "#cad3f5" })
-hi(0, "CmpItemAbbrMatchDefault", { fg = "#939ab7" })
-hi(0, "CmpItemAbbrMatchFuzzy", { bold = true, fg = "#cad3f5" })
-hi(0, "CmpItemAbbrMatchFuzzyDefault", { fg = "#939ab7" })
-hi(0, "CmpItemKind", { fg = "#8aadf4" })
-hi(0, "CmpItemKindClass", { fg = "#eed49f" })
-hi(0, "CmpItemKindClassDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindColor", { fg = "#ed8796" })
-hi(0, "CmpItemKindColorDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindConstant", { fg = "#f5a97f" })
-hi(0, "CmpItemKindConstantDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindConstructor", { fg = "#8aadf4" })
-hi(0, "CmpItemKindConstructorDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindCopilot", { fg = "#8bd5ca" })
-hi(0, "CmpItemKindDefault", { fg = "#f5bde6" })
-hi(0, "CmpItemKindEnum", { fg = "#a6da95" })
-hi(0, "CmpItemKindEnumDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindEnumMember", { fg = "#ed8796" })
-hi(0, "CmpItemKindEnumMemberDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindEvent", { fg = "#8aadf4" })
-hi(0, "CmpItemKindEventDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindField", { fg = "#a6da95" })
-hi(0, "CmpItemKindFieldDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindFile", { fg = "#8aadf4" })
-hi(0, "CmpItemKindFileDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindFolder", { fg = "#8aadf4" })
-hi(0, "CmpItemKindFolderDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindFunction", { fg = "#8aadf4" })
-hi(0, "CmpItemKindFunctionDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindInterface", { fg = "#eed49f" })
-hi(0, "CmpItemKindInterfaceDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindKeyword", { fg = "#ed8796" })
-hi(0, "CmpItemKindKeywordDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindMethod", { fg = "#8aadf4" })
-hi(0, "CmpItemKindMethodDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindModule", { fg = "#8aadf4" })
-hi(0, "CmpItemKindModuleDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindOperator", { fg = "#8aadf4" })
-hi(0, "CmpItemKindOperatorDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindProperty", { fg = "#a6da95" })
-hi(0, "CmpItemKindPropertyDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindReference", { fg = "#ed8796" })
-hi(0, "CmpItemKindReferenceDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindSnippet", { fg = "#c6a0f6" })
-hi(0, "CmpItemKindSnippetDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindStruct", { fg = "#8aadf4" })
-hi(0, "CmpItemKindStructDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindText", { fg = "#8bd5ca" })
-hi(0, "CmpItemKindTextDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindTypeParameter", { fg = "#8aadf4" })
-hi(0, "CmpItemKindTypeParameterDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindUnit", { fg = "#a6da95" })
-hi(0, "CmpItemKindUnitDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindValue", { fg = "#f5a97f" })
-hi(0, "CmpItemKindValueDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemKindVariable", { fg = "#f0c6c6" })
-hi(0, "CmpItemKindVariableDefault", { link = "CmpItemKind" })
-hi(0, "CmpItemMenu", { fg = "#cad3f5" })
-hi(0, "CmpItemMenuDefault", { fg = "#939ab7" })
 hi(0, "ColorColumn", { bg = "#363a4f" })
 hi(0, "Comment", { fg = "#6e738d", italic = true })
 hi(0, "Conceal", { fg = "#8087a2" })
@@ -194,31 +130,68 @@ hi(0, "CursorIM", { bg = "#cad3f5", fg = "#24273a" })
 hi(0, "CursorLine", { bg = "#303347" })
 hi(0, "CursorLineNr", { fg = "#b7bdf8" })
 hi(0, "Delimiter", { fg = "#939ab7" })
+
+--
+-- Diagnostic
+--
+hi(0, "DiagnosticWarn", { fg = "#eed49f", italic = true })
+hi(0, "DiagnosticHint", { fg = "#8bd5ca", italic = true })
+hi(0, "DiagnosticInfo", { fg = "#91d7e3", italic = true })
 hi(0, "DiagnosticError", { fg = "#ed8796", italic = true })
 hi(0, "DiagnosticOk", { fg = "#a6da95", italic = true })
+
+--
+-- Diagnistic floating window
+--
 hi(0, "DiagnosticFloatingError", { fg = "#ed8796" })
 hi(0, "DiagnosticFloatingHint", { fg = "#8bd5ca" })
 hi(0, "DiagnosticFloatingInfo", { fg = "#91d7e3" })
 hi(0, "DiagnosticFloatingWarn", { fg = "#eed49f" })
-hi(0, "DiagnosticHint", { fg = "#8bd5ca", italic = true })
-hi(0, "DiagnosticInfo", { fg = "#91d7e3", italic = true })
+
+--
+-- Diagnostic signs
+--
 hi(0, "DiagnosticSignError", { fg = "#ed8796" })
 hi(0, "DiagnosticSignHint", { fg = "#8bd5ca" })
 hi(0, "DiagnosticSignInfo", { fg = "#91d7e3" })
 hi(0, "DiagnosticSignWarn", { fg = "#eed49f" })
+
+--
+-- Diagnostic underline
+--
 hi(0, "DiagnosticUnderlineError", { sp = "#ed8796", underline = true })
 hi(0, "DiagnosticUnderlineHint", { sp = "#8bd5ca", underline = true })
 hi(0, "DiagnosticUnderlineInfo", { sp = "#91d7e3", underline = true })
 hi(0, "DiagnosticUnderlineWarn", { sp = "#eed49f", underline = true })
+
+--
+-- Diagnostic virtual text
+--
 hi(0, "DiagnosticVirtualTextError", { bg = "#373043", fg = "#ed8796", italic = true })
 hi(0, "DiagnosticVirtualTextHint", { bg = "#2e3848", fg = "#8bd5ca", italic = true })
 hi(0, "DiagnosticVirtualTextInfo", { bg = "#2e384a", fg = "#91d7e3", italic = true })
 hi(0, "DiagnosticVirtualTextWarn", { bg = "#373744", fg = "#eed49f", italic = true })
-hi(0, "DiagnosticWarn", { fg = "#eed49f", italic = true })
+
+--
+-- Diagnostic virtual line
+--
+hi(0, "DiagnosticVirtualLinesError", { fg = "#ed8796", italic = true })
+hi(0, "DiagnosticVirtualLinesHint", { fg = "#8bd5ca", italic = true })
+hi(0, "DiagnosticVirtualLinesInfo", { fg = "#91d7e3", italic = true })
+hi(0, "DiagnosticVirtualLinesWarn", { fg = "#eed49f", italic = true })
+
+--
+-- Diff
+--
 hi(0, "DiffAdd", { bg = "#3b474a" })
-hi(0, "DiffChange", { bg = "#2b3047" })
 hi(0, "DiffDelete", { bg = "#48384b", fg = "#1e2030" })
+hi(0, "DiffChange", { bg = "#2b3047" })
 hi(0, "DiffText", { bg = "#434f72" })
+
+hi(0, "Changed", { fg = "#eed49f" })
+hi(0, "Removed", { fg = "#ed8796" })
+hi(0, "Added", { fg = "#a6da95" })
+
 hi(0, "Directory", { fg = "#8aadf4" })
 hi(0, "EndOfBuffer", { fg = "#24273a" })
 hi(0, "Error", { fg = "#ed8796" })
@@ -264,7 +237,7 @@ hi(0, "LspDiagnosticsVirtualTextError", { fg = "#ed8796", italic = true })
 hi(0, "LspDiagnosticsVirtualTextHint", { fg = "#8bd5ca", italic = true })
 hi(0, "LspDiagnosticsVirtualTextInformation", { fg = "#91d7e3", italic = true })
 hi(0, "LspDiagnosticsVirtualTextWarning", { fg = "#eed49f", italic = true })
-hi(0, "LspDiagnosticsWarning", { fg = "#eed49f" })
+hi(0, "LspDiagnosticsWarning", { fg = "#eed49f", blend = 50 })
 hi(0, "LspInfoBorder", { link = "FloatBorder" })
 -- hi(0, "LspInlayHint", { bg = "#303347", fg = "#6e738d" })
 hi(0, "LspInlayHint", { fg = "#6e738d" })
@@ -423,6 +396,10 @@ hi(0, "SpellLocal", { fg = "#8aadf4", undercurl = true })
 hi(0, "SpellRare", { fg = "#a6da95", undercurl = true, italic = true })
 
 --
+-- Plugins
+--
+
+--
 -- mini.hipatterns
 --
 hi(0, "MiniHipatternsTodo", { fg = "#eed49f" })
@@ -433,9 +410,8 @@ hi(0, "MiniHipatternsDeprecate", { fg = "#f5a97f" })
 --
 -- mini.diff
 --
-hi(0, "Changed", { fg = "#eed49f" })
-hi(0, "Removed", { fg = "#ed8796" })
-hi(0, "Added", { fg = "#a6da95" })
+
+hi(0, "MiniDiffOverAdd", { fg = "#a6da95" })
 
 --
 -- mini.indentscope
@@ -459,15 +435,15 @@ hi(0, "MiniIconsYellow", { fg = "#eed49f" })
 -- mini.tabline
 --
 hi(0, "MiniTablineCurrent", { link = "TabLineSel" })
-hi(0, "MiniTablineModifiedCurrent", { fg = "#ed8796", italic = true })
-hi(0, "MiniTablineModifiedHidden", { fg = "#f5a97f", italic = true })
-hi(0, "MiniTablineModifiedVisible", { fg = "#f5a97f", italic = true })
+hi(0, "MiniTablineModifiedCurrent", { fg = "#ed8796", bg = "#373043" })
+hi(0, "MiniTablineModifiedHidden", { fg = "#f5a97f", bg = "#373744" })
+hi(0, "MiniTablineModifiedVisible", { fg = "#f5a97f", bg = "#373744" })
 hi(0, "MiniTablineVisible", { link = "TabLine" })
 
 --
 -- treesitter-context
 --
-hi(0, "TreesitterContextSeparator", { fg = '#8aadf4' })
+hi(0, "TreesitterContextSeparator", { fg = "#8aadf4" })
 
 --
 -- Filetypes

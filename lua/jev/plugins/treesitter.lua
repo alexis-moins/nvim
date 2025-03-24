@@ -9,7 +9,8 @@ local add = MiniDeps.add
 --
 add({
 	source = "nvim-treesitter/nvim-treesitter",
-	checkout = "master", monitor = "main",
+	checkout = "master",
+	monitor = "main",
 	hooks = { post_checkout = vim.cmd.TSUpdate },
 })
 
@@ -60,7 +61,7 @@ require("nvim-treesitter.configs").setup({
 			},
 
 			goto_next_end = {
-				["]F"] = { query = "@function.outer", desc = "Previous function end" },
+				["]F"] = { query = "@function.outer", desc = "Next function end" },
 				["]P"] = { query = "@parameter.outer", desc = "Next parameter end" },
 				["]C"] = { query = "@comment.outer", desc = "Next comment end" },
 				["]S"] = { query = "@class.outer", desc = "Next class end" },
@@ -82,9 +83,9 @@ require("nvim-treesitter.configs").setup({
 add("nvim-treesitter/nvim-treesitter-context")
 
 require("treesitter-context").setup({
-    separator = '─',
-    multiline_threshold = 1,
-    max_lines = 5
+	separator = "─",
+	multiline_threshold = 1,
+	max_lines = 5,
 })
 
 -- add("OXY2DEV/helpview.nvim")
