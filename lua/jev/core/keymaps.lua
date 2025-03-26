@@ -58,17 +58,17 @@ keys.map("n", "]t", vim.cmd.tabprevious, "Navigate to previous tab page")
 --
 
 -- Numbers on the left
-keys.map("n", "|n", keys.toggle("number"), "Toggle line number")
-keys.map("n", "|r", keys.toggle("relativenumber"), "Toggle relative line number")
+keys.map("n", "\\n", keys.toggle("number"), "Toggle line number")
+keys.map("n", "\\r", keys.toggle("relativenumber"), "Toggle relative line number")
 
 -- Toggle colorcolumn
-keys.map("n", "|c", function()
+keys.map("n", "\\c", function()
 	local value = vim.opt_local.colorcolumn:get()
 	opt.setlocal("colorcolumn", #value > 0 and "" or "79")
 end, "Toggle colorcolumn")
 
 -- Toggle quickfix list
-keys.map("n", "|q", function()
+keys.map("n", "\\q", function()
 	for _, win in pairs(vim.fn.getwininfo()) do
 		if win.quickfix == 1 then
 			-- Close quickfix window if opened
@@ -80,15 +80,13 @@ keys.map("n", "|q", function()
 	vim.cmd.copen()
 end, "Toggle quickfix")
 
-keys.map("n", "|l", keys.toggle("list"), "Toggle list chararcters")
-
 -- Wrap lines that are longer than 'textwidth'
-keys.map("n", "|w", keys.toggle("wrap"), "Toggle line wrapping")
+keys.map("n", "\\w", keys.toggle("wrap"), "Toggle line wrapping")
 
 -- Spelling errors and suggestions
-keys.map("n", "|s", keys.toggle("spell"), "Toggle spell checking")
+keys.map("n", "\\s", keys.toggle("spell"), "Toggle spell checking")
 
-keys.map("n", "|D", function()
+keys.map("n", "\\v", function()
 	local virtual_lines = not vim.diagnostic.config().virtual_lines
 	local virtual_text = not vim.diagnostic.config().virtual_text
 
