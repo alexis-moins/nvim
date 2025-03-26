@@ -7,6 +7,35 @@ vim.g.colors_name = "catppuccin-macchiato"
 -- Highlight groups
 local hi = vim.api.nvim_set_hl
 
+--
+-- Syntax
+--
+hi(0, "Comment", { fg = "#6e738d", italic = true })
+hi(0, "Constant", { fg = "#f5a97f" })
+hi(0, "String", { fg = "#a6da95" })
+hi(0, "Character", { fg = "#8bd5ca" })
+hi(0, "Number", { fg = "#f5a97f" })
+hi(0, "Boolean", { fg = "#f5a97f" })
+hi(0, "Float", { fg = "#f5a97f" })
+hi(0, "Identifier", { fg = "#f0c6c6" })
+hi(0, "Function", { fg = "#8aadf4" })
+
+hi(0, "Changed", { fg = "#eed49f" })
+hi(0, "Removed", { fg = "#ed8796" })
+hi(0, "Added", { fg = "#a6da95" })
+
+--
+-- Interface
+--
+hi(0, "Search", { bg = "#494d64" })
+hi(0, "CurSearch", { bg = "#ed8796", fg = "#1e2030" })
+hi(0, "IncSearch", { bg = "#86c5d2", fg = "#1e2030" })
+
+hi(0, "Error", { bg = "#373043", fg = "#ed8796", italic = true })
+hi(0, "MoreMsg", { fg = "#6e738d" })
+hi(0, "ErrorMsg", { bg = "#373043", fg = "#ed8796", italic = true })
+hi(0, "Question", { fg = "#6e738d" })
+
 hi(0, "@attribute", { link = "Constant" })
 hi(0, "@character.special", { link = "SpecialChar" })
 hi(0, "@conditional", { link = "Conditional" })
@@ -116,14 +145,9 @@ hi(0, "@type.tag.css", { fg = "#c6a0f6" })
 hi(0, "@variable", { fg = "#cad3f5" })
 hi(0, "@variable.builtin", { fg = "#ed8796" })
 hi(0, "Bold", { bold = true })
-hi(0, "Boolean", { fg = "#f5a97f" })
-hi(0, "Character", { fg = "#8bd5ca" })
 hi(0, "ColorColumn", { bg = "#363a4f" })
-hi(0, "Comment", { fg = "#6e738d", italic = true })
 hi(0, "Conceal", { fg = "#8087a2" })
 hi(0, "Conditional", { fg = "#c6a0f6", italic = true })
-hi(0, "Constant", { fg = "#f5a97f" })
-hi(0, "CurSearch", { bg = "#ed8796", fg = "#1e2030" })
 hi(0, "Cursor", { bg = "#cad3f5", fg = "#24273a" })
 hi(0, "CursorColumn", { bg = "#1e2030" })
 hi(0, "CursorIM", { bg = "#cad3f5", fg = "#24273a" })
@@ -175,10 +199,10 @@ hi(0, "DiagnosticVirtualTextWarn", { bg = "#373744", fg = "#eed49f", italic = tr
 --
 -- Diagnostic virtual line
 --
-hi(0, "DiagnosticVirtualLinesError", { fg = "#ed8796", italic = true })
-hi(0, "DiagnosticVirtualLinesHint", { fg = "#8bd5ca", italic = true })
-hi(0, "DiagnosticVirtualLinesInfo", { fg = "#91d7e3", italic = true })
-hi(0, "DiagnosticVirtualLinesWarn", { fg = "#eed49f", italic = true })
+hi(0, "DiagnosticVirtualLinesError", { bg = "#373043", fg = "#ed8796" })
+hi(0, "DiagnosticVirtualLinesHint", { bg = "#2e3848", fg = "#8bd5ca" })
+hi(0, "DiagnosticVirtualLinesInfo", { bg = "#2e384a", fg = "#91d7e3" })
+hi(0, "DiagnosticVirtualLinesWarn", { bg = "#373744", fg = "#eed49f" })
 
 --
 -- Diff
@@ -188,20 +212,13 @@ hi(0, "DiffDelete", { bg = "#48384b", fg = "#1e2030" })
 hi(0, "DiffChange", { bg = "#2b3047" })
 hi(0, "DiffText", { bg = "#434f72" })
 
-hi(0, "Changed", { fg = "#eed49f" })
-hi(0, "Removed", { fg = "#ed8796" })
-hi(0, "Added", { fg = "#a6da95" })
-
 hi(0, "Directory", { fg = "#8aadf4" })
 hi(0, "EndOfBuffer", { fg = "#24273a" })
-hi(0, "Error", { fg = "#ed8796" })
-hi(0, "ErrorMsg", { bold = true, fg = "#ed8796", italic = true })
 hi(0, "Exception", { fg = "#c6a0f6" })
 hi(0, "FloatBorder", { fg = "#8aadf4" })
 hi(0, "FloatTitle", { fg = "#a5adcb" })
 hi(0, "FoldColumn", { link = "CursorLineNr" })
 hi(0, "Folded", { bg = "#24273a", fg = "#8aadf4" })
-hi(0, "Function", { fg = "#8aadf4" })
 hi(0, "GlyphPalette1", { fg = "#ed8796" })
 hi(0, "GlyphPalette2", { fg = "#8bd5ca" })
 hi(0, "GlyphPalette3", { fg = "#eed49f" })
@@ -211,11 +228,9 @@ hi(0, "GlyphPalette7", { fg = "#cad3f5" })
 hi(0, "GlyphPalette9", { fg = "#ed8796" })
 hi(0, "IblIndent", { fg = "#363a4f" })
 hi(0, "IblScope", { fg = "#cad3f5" })
-hi(0, "Identifier", { fg = "#f0c6c6" })
 hi(0, "IlluminatedWordRead", { bg = "#3e4257" })
 hi(0, "IlluminatedWordText", { bg = "#3e4257" })
 hi(0, "IlluminatedWordWrite", { bg = "#3e4257" })
-hi(0, "IncSearch", { bg = "#86c5d2", fg = "#1e2030" })
 hi(0, "Include", { fg = "#c6a0f6" })
 hi(0, "Italic", { italic = true })
 hi(0, "Keyword", { fg = "#c6a0f6" })
@@ -255,14 +270,12 @@ hi(0, "MiniPickPrompt", { link = "Normal" })
 hi(0, "MiniNotifyBorder", { fg = "#c6a0f6" })
 hi(0, "MiniNotifyNormal", { link = "Comment" })
 hi(0, "ModeMsg", { bold = true, fg = "#cad3f5" })
-hi(0, "MoreMsg", { fg = "#8aadf4" })
 hi(0, "MsgSeparator", {})
 hi(0, "NonText", { fg = "#494d64" })
 hi(0, "Normal", { bg = "#24273a", fg = "#cad3f5" })
 hi(0, "NormalFloat", { bg = "#24273a", fg = "#cad3f5" })
 hi(0, "NormalNC", { bg = "#24273a", fg = "#cad3f5" })
 hi(0, "NormalSB", { bg = "#181926", fg = "#cad3f5" })
-hi(0, "Number", { fg = "#f5a97f" })
 hi(0, "NvimTreeEmptyFolderName", { fg = "#8aadf4" })
 hi(0, "NvimTreeFolderIcon", { fg = "#8aadf4" })
 hi(0, "NvimTreeFolderName", { fg = "#8aadf4" })
@@ -285,7 +298,6 @@ hi(0, "PmenuSbar", { bg = "#494d64" })
 hi(0, "PmenuSel", { bg = "#494d64", bold = true })
 hi(0, "PmenuThumb", { bg = "#6e738d" })
 hi(0, "PreProc", { fg = "#f5bde6" })
-hi(0, "Question", { fg = "#8aadf4" })
 hi(0, "QuickFixLine", { bg = "#494d64", bold = true })
 hi(0, "RainbowBlue", { blend = 0, fg = "#8aadf4" })
 hi(0, "RainbowCyan", { blend = 0, fg = "#8bd5ca" })
@@ -302,7 +314,6 @@ hi(0, "RainbowRed", { blend = 0, fg = "#ed8796" })
 hi(0, "RainbowViolet", { blend = 0, fg = "#c6a0f6" })
 hi(0, "RainbowYellow", { blend = 0, fg = "#eed49f" })
 hi(0, "Repeat", { fg = "#c6a0f6" })
-hi(0, "Search", { bg = "#455c6d", fg = "#cad3f5" })
 hi(0, "SignColumn", { fg = "#494d64" })
 hi(0, "SignColumnSB", { bg = "#181926", fg = "#494d64" })
 hi(0, "Special", { fg = "#f5bde6" })
@@ -311,7 +322,6 @@ hi(0, "Statement", { fg = "#c6a0f6" })
 hi(0, "StatusLine", { bg = "#24273a", fg = "#24273a" })
 hi(0, "StatusLineNC", { bg = "#1e2030", fg = "#494d64" })
 hi(0, "StorageClass", { fg = "#eed49f" })
-hi(0, "String", { fg = "#a6da95" })
 hi(0, "Structure", { fg = "#eed49f" })
 hi(0, "Substitute", { bg = "#494d64", fg = "#f5bde6" })
 hi(0, "TabLine", { bg = "#24273a", fg = "#5b6078" })
@@ -410,7 +420,6 @@ hi(0, "MiniHipatternsDeprecate", { fg = "#f5a97f" })
 --
 -- mini.diff
 --
-
 hi(0, "MiniDiffOverAdd", { fg = "#a6da95" })
 
 --

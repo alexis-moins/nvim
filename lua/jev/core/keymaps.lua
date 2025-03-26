@@ -87,3 +87,10 @@ keys.map("n", "|w", keys.toggle("wrap"), "Toggle line wrapping")
 
 -- Spelling errors and suggestions
 keys.map("n", "|s", keys.toggle("spell"), "Toggle spell checking")
+
+keys.map("n", "|D", function()
+	local virtual_lines = not vim.diagnostic.config().virtual_lines
+	local virtual_text = not vim.diagnostic.config().virtual_text
+
+	vim.diagnostic.config({ virtual_lines = virtual_lines, virtual_text = virtual_text })
+end, "Toggle diagnostic virtual lines")

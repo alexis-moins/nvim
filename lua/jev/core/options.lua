@@ -4,11 +4,15 @@ opt.set("termguicolors", true)
 -- Use tweaked version of catppuccin
 vim.cmd.colorscheme("catppuccin-macchiato")
 
+opt.set("messagesopt", { "hit-enter", "history:500" })
+
 -- Always display sign column (diagnostics...)
 opt.set("signcolumn", "yes")
 
 -- Highlight current line
 opt.set("cursorline", true)
+
+opt.set("autoread", true)
 
 -- More natural split directions
 opt.set("splitbelow", true)
