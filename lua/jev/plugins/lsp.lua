@@ -88,12 +88,6 @@ local function lsp(scope)
 	end
 end
 
-local function diagnostic(scope)
-	return function()
-		MiniExtra.pickers.diagnostic({ scope = scope })
-	end
-end
-
 event.autocmd("LspAttach", {
 	group = event.augroup("LspConfig"),
 	callback = function(args)
@@ -101,19 +95,16 @@ event.autocmd("LspAttach", {
 
 		-- vim.lsp.completion.enable(true, 0, buffer, { autotrigger = true })
 
-		keys.maplocal("n", "<Leader>gd", lsp("definition"), "Go to definitions", buffer)
-		keys.maplocal("n", "<Leader>gr", lsp("references"), "Go to references", buffer)
-		keys.maplocal("n", "<Leader>gt", lsp("type_definition"), "Go to type definitions", buffer)
+		keys.maplocal("n", ";d", lsp("definition"), "Go to definitions", buffer)
+		keys.maplocal("n", ";r", lsp("references"), "Go to references", buffer)
+		keys.maplocal("n", ";t", lsp("type_definition"), "Go to type definitions", buffer)
 
-		keys.maplocal("n", "<Leader>w", diagnostic("all"), "Find diagnostic (all)", buffer)
-		keys.maplocal("n", "<Leader>d", diagnostic("current"), "Find diagnostic (current)", buffer)
+		keys.maplocal("n", ";f", lsp("document_symbol"), "Find document symbol", buffer)
 
-		keys.maplocal("n", "<Leader>ff", lsp("document_symbol"), "Find document symbol", buffer)
+		keys.maplocal("n", ";R", vim.cmd.LspRestart, "Restart Lsp client", buffer)
 
-		keys.maplocal("n", "<Leader>lR", vim.cmd.LspRestart, "Restart Lsp client", buffer)
-
-		keys.maplocal("n", "<Leader>ca", vim.lsp.buf.code_action, "Code actions", buffer)
-		keys.maplocal("n", "<Leader>rn", vim.lsp.buf.rename, "Rename", buffer)
+		keys.maplocal("n", ";c", vim.lsp.buf.code_action, "Code actions", buffer)
+		keys.maplocal("n", ";n", vim.lsp.buf.rename, "Rename", buffer)
 
 		keys.maplocal("n", "H", function()
 			vim.diagnostic.open_float(nil, { focus = false })

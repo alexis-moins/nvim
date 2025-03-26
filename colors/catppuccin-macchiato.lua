@@ -450,6 +450,11 @@ hi(0, "MiniTablineModifiedVisible", { fg = "#f5a97f", bg = "#373744" })
 hi(0, "MiniTablineVisible", { link = "TabLine" })
 
 --
+-- mini.jump
+--
+hi(0, "MiniJump", { bg = "#373744", fg = "#eed49f", underline = true })
+
+--
 -- treesitter-context
 --
 hi(0, "TreesitterContextSeparator", { fg = "#8aadf4" })

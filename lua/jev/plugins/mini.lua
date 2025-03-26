@@ -19,6 +19,15 @@ keys.map("n", "<C-s>", function()
 	MiniExtra.pickers.buf_lines({ scope = "current" })
 end, "Find lines")
 
+local function diagnostic(scope)
+	return function()
+		MiniExtra.pickers.diagnostic({ scope = scope })
+	end
+end
+
+keys.map("n", "<Leader>w", diagnostic("all"), "Find diagnostic (all)")
+keys.map("n", "<Leader>d", diagnostic("current"), "Find diagnostic (current)")
+
 --
 -- mini.pick
 --
