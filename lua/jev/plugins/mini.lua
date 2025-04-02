@@ -15,10 +15,6 @@ keys.map("n", "<C-f>", function()
 	MiniExtra.pickers.history({ scope = ":" })
 end, "Filter command history")
 
-keys.map("n", "<C-s>", function()
-	MiniExtra.pickers.buf_lines({ scope = "current" })
-end, "Find lines")
-
 local function diagnostic(scope)
 	return function()
 		MiniExtra.pickers.diagnostic({ scope = scope })
@@ -134,34 +130,6 @@ require("mini.splitjoin").setup()
 --
 add("echasnovski/mini.operators")
 require("mini.operators").setup()
-
---
--- mini.sessions
---
-add("echasnovski/mini.sessions")
-require("mini.sessions").setup({
-	autowrite = false,
-	verbose = { read = true },
-})
-
---- Wrapper around mini.sessions functions. Returns a function that
---- behaves differently based on the given scope.
----
----@param scope "local"|"write"|"read"|"delete"
----@return function
-local function session(scope)
-	return function()
-		if scope == "local" then
-			MiniSessions.write("Session.vim")
-		else
-			MiniSessions.select(scope)
-		end
-	end
-end
-
--- Mappings
-keys.map("n", "<Leader>sl", session("local"), "Write a local session")
-keys.map("n", "<Leader>sr", session("read"), "Read a session")
 
 --
 -- mini.colors
