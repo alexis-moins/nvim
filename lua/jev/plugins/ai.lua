@@ -28,7 +28,7 @@ require("codecompanion").setup({
 })
 
 keys.map({ "n", "v" }, "<Leader>cc", "<cmd>CodeCompanionActions<cr>", "Open CodeCompanion menu")
-keys.map({ "n", "v" }, "|a", "<cmd>CodeCompanionChat Toggle<cr>", "Toggle CodeCompanion")
+keys.map({ "n", "v" }, "\\a", "<cmd>CodeCompanionChat Toggle<cr>", "Toggle CodeCompanion")
 
 keys.map("v", "ga", "<cmd>CodeCompanionAdd<cr>", "Add selection to CodeCompanion")
 

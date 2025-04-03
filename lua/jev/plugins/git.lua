@@ -3,14 +3,22 @@ local add = MiniDeps.add
 --
 -- Fugitive
 --
-add("tpope/vim-fugitive")
-keys.map("n", "<C-G>", "<cmd>Git<cr>", "Open git status")
+-- add("tpope/vim-fugitive")
+
 
 --
 -- mini.git
 --
--- add("echasnovski/mini-git")
--- require("mini.git").setup({})
+add("echasnovski/mini-git")
+require("mini.git").setup({})
+
+keys.map("n", "<C-G>", function()
+   MiniExtra.pickers.git_files({ scope='modified' })
+end, "Find unstaged files (git)")
+
+keys.map("n", "<C-S>", function()
+    MiniPick.builtin.cli({ command = {"git", "diff", "--cached", "--name-only"} }, { source = { name = "Git files (staged)" } })
+end, "Find staged files (git)")
 
 --
 -- mini.diff
@@ -27,5 +35,5 @@ require("mini.diff").setup({
 })
 
 -- Mappings
-keys.map("n", "|d", MiniDiff.toggle_overlay, "Toggle diff overlay")
-keys.map("n", "|g", MiniDiff.toggle, "Toggle git signs")
+keys.map("n", "\\d", MiniDiff.toggle_overlay, "Toggle diff overlay")
+keys.map("n", "\\g", MiniDiff.toggle, "Toggle git signs")
