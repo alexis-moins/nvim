@@ -11,3 +11,8 @@ require("jev.plugins.conform")
 require("jev.plugins.ai")
 require("jev.plugins.explorer")
 require("jev.plugins.edition")
+
+--
+-- misc
+--
+require("jev.plugins.tmux")

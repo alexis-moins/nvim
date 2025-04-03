@@ -27,6 +27,12 @@ hi(0, "Added", { fg = "#a6da95" })
 --
 -- Interface
 --
+hi(0, "Cursor", { bg = "#cad3f5", fg = "#24273a" })
+hi(0, "CursorIM", { bg = "#cad3f5", fg = "#24273a" })
+hi(0, "CursorColumn", { bg = "#1e2030" })
+hi(0, "CursorLine", { bg = "#303347" })
+hi(0, "CursorLineNr", { fg = "#b7bdf8" })
+
 hi(0, "Search", { bg = "#494d64" })
 hi(0, "CurSearch", { bg = "#ed8796", fg = "#1e2030" })
 hi(0, "IncSearch", { bg = "#86c5d2", fg = "#1e2030" })
@@ -34,8 +40,13 @@ hi(0, "IncSearch", { bg = "#86c5d2", fg = "#1e2030" })
 hi(0, "Error", { bg = "#373043", fg = "#ed8796", italic = true })
 hi(0, "MoreMsg", { fg = "#6e738d" })
 hi(0, "ErrorMsg", { bg = "#373043", fg = "#ed8796", italic = true })
-hi(0, "Question", { fg = "#6e738d" })
+hi(0, "Question", { fg = "#cad3f5" })
 
+hi(0, "MatchParen", { bg = "#373744", fg = "#eed49f", underline = true })
+
+--
+-- Treesitter
+--
 hi(0, "@attribute", { link = "Constant" })
 hi(0, "@character.special", { link = "SpecialChar" })
 hi(0, "@conditional", { link = "Conditional" })
@@ -148,11 +159,6 @@ hi(0, "Bold", { bold = true })
 hi(0, "ColorColumn", { bg = "#363a4f" })
 hi(0, "Conceal", { fg = "#8087a2" })
 hi(0, "Conditional", { fg = "#c6a0f6", italic = true })
-hi(0, "Cursor", { bg = "#cad3f5", fg = "#24273a" })
-hi(0, "CursorColumn", { bg = "#1e2030" })
-hi(0, "CursorIM", { bg = "#cad3f5", fg = "#24273a" })
-hi(0, "CursorLine", { bg = "#303347" })
-hi(0, "CursorLineNr", { fg = "#b7bdf8" })
 hi(0, "Delimiter", { fg = "#939ab7" })
 
 --
@@ -261,7 +267,6 @@ hi(0, "LspReferenceText", { bg = "#494d64" })
 hi(0, "LspReferenceWrite", { bg = "#494d64" })
 hi(0, "LspSignatureActiveParameter", { fg = "#f5a97f" })
 hi(0, "Macro", { fg = "#c6a0f6" })
-hi(0, "MatchParen", { bg = "#494d64", bold = true, fg = "#f5a97f" })
 hi(0, "MiniClueDescGroup", { fg = "#ed8796" })
 hi(0, "MiniFilesBorderModified", { fg = "#ed8796" })
 hi(0, "MiniPickMatchRanges", { link = "String" })

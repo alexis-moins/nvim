@@ -23,8 +23,10 @@ keys.map("n", "J", "mzJ`z", "Join line below without moving cursor")
 keys.map("n", "L", "$", "Go to the end of the line")
 keys.map("v", "L", "$", "Go to the end of the line (visual)")
 
+keys.map("n", "<C-E>", "``", "To the postition before the latest jump")
+
 -- Buffers
-keys.map("n", "<C-E>", "<cmd>edit #<cr>", "Edit alternate file")
+keys.map("n", "<Tab>", "<C-^>", "Edit alternate file")
 keys.map(
 	"n",
 	"<Leader>bd",
@@ -42,16 +44,24 @@ keys.map({ "n", "x" }, "gy", '"+y', "Copy (+register)")
 keys.map({ "n", "x" }, "gp", '"+p', "Paste after cursor (+register)")
 keys.map({ "n", "x" }, "gP", '"+P', "Paste before cursor (+register)")
 
-keys.map("n", "=p", "p`[v`]=", "Paste and reindent")
-
 keys.map("v", "s", ":s/\\%V", "Substitute in visual mode")
--- keys.map("n", "g.", ":%s//<c-r>./g<esc>", "Replace last search globally with last edit")
-keys.map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Replace last search globally with last edit")
+keys.map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Substitute word under cursor globally")
 
 keys.map("n", "X", "daw", "Delete around word")
 
 keys.map("n", "[t", vim.cmd.tabnext, "Navigate to next tab page")
 keys.map("n", "]t", vim.cmd.tabprevious, "Navigate to previous tab page")
+
+keys.map("n", "/", "ms/", "Search forward (with mark)")
+keys.map("n", "?", "ms?", "Search backward (with mark)")
+
+keys.map("n", "c*", "*``cgn", "Replace word under cursor (repeatable with .)")
+keys.map("n", "c#", "#``cgN", "Backward replace word under cursor (respeatable with .)")
+
+keys.map("n", "d*", "*``dgn", "Delete word under cursor (repeatable with .)")
+keys.map("n", "d#", "#``dgN", "Backward delete word under cursor (respeatable with .)")
+
+-- keys.map("n", "<CR>", "za", "Toggle fold")
 
 --
 -- Option toggling
