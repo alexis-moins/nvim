@@ -27,12 +27,7 @@ keys.map("n", "<C-E>", "``", "To the postition before the latest jump")
 
 -- Buffers
 keys.map("n", "<Tab>", "<C-^>", "Edit alternate file")
-keys.map(
-	"n",
-	"<Leader>bd",
-	"mP<cmd>silent %bdelete<bar>edit #<bar>bdelete #<cr>'P",
-	"Close all buffers but current one"
-)
+keys.map("n", "<Leader>bd", "mP<cmd>sil %bd<bar>e #<bar>bd #<CR>'P", "Close all buffers but current one")
 
 keys.map("n", "<C-U>", "<C-U>zz", "Scroll upwards (center)")
 keys.map("n", "<C-D>", "<C-D>zz", "Scroll downwards (center)")
@@ -44,8 +39,10 @@ keys.map({ "n", "x" }, "gy", '"+y', "Copy (+register)")
 keys.map({ "n", "x" }, "gp", '"+p', "Paste after cursor (+register)")
 keys.map({ "n", "x" }, "gP", '"+P', "Paste before cursor (+register)")
 
-keys.map("v", "s", ":s/\\%V", "Substitute in visual mode")
+keys.map("v", "s", ":s/\\%V", "Substitute inside current visual selection")
+
 keys.map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Substitute word under cursor globally")
+keys.map("v", "g.", '"zy:%s/<C-R>z//gc<left><left><left>', "Substitute visual selection globally")
 
 keys.map("n", "X", "daw", "Delete around word")
 
@@ -55,13 +52,11 @@ keys.map("n", "]t", vim.cmd.tabprevious, "Navigate to previous tab page")
 keys.map("n", "/", "ms/", "Search forward (with mark)")
 keys.map("n", "?", "ms?", "Search backward (with mark)")
 
-keys.map("n", "c*", "*``cgn", "Replace word under cursor (repeatable with .)")
-keys.map("n", "c#", "#``cgN", "Backward replace word under cursor (respeatable with .)")
+keys.map("n", "c*", '*``"_cgn', "Replace word under cursor (dot repeatable)")
+keys.map("n", "c#", '#``"_cgN', "Backward replace word under cursor (dot respeatable)")
 
-keys.map("n", "d*", "*``dgn", "Delete word under cursor (repeatable with .)")
-keys.map("n", "d#", "#``dgN", "Backward delete word under cursor (respeatable with .)")
-
--- keys.map("n", "<CR>", "za", "Toggle fold")
+keys.map("n", "d*", '*``"_dgn', "Delete word under cursor (dot repeatable)")
+keys.map("n", "d#", '#``"_dgN', "Backward delete word under cursor (dot respeatable)")
 
 --
 -- Option toggling
