@@ -70,14 +70,6 @@ require("mini.notify").setup({
 			return notif.msg
 		end,
 	},
-
-	window = {
-		config = {
-			border = "single",
-		},
-
-		winblend = 0,
-	},
 })
 
 -- Use mini.notify for general notification
