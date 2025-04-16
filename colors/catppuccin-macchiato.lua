@@ -213,6 +213,7 @@ hi(0, "DiagnosticVirtualLinesWarn", { bg = "#373744", fg = "#eed49f" })
 --
 -- Diff
 --
+
 hi(0, "DiffAdd", { bg = "#3b474a" })
 hi(0, "DiffDelete", { bg = "#48384b", fg = "#1e2030" })
 hi(0, "DiffChange", { bg = "#2b3047" })

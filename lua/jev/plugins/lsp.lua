@@ -1,7 +1,6 @@
 local add = MiniDeps.add
 
 vim.diagnostic.config({
-	float = { border = "single" },
 	update_in_insert = true,
 	virtual_text = false,
 	virtual_lines = {
@@ -109,10 +108,6 @@ event.autocmd("LspAttach", {
 		keys.maplocal("n", "H", function()
 			vim.diagnostic.open_float(nil, { focus = false })
 		end, "Open diagnostics popup", buffer)
-
-		keys.maplocal("n", "K", function()
-			vim.lsp.buf.hover({ border = "single" })
-		end, "Open signature popup", buffer)
 	end,
 })
 

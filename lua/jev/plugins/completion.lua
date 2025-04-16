@@ -22,11 +22,6 @@ snippet.setup({
 --
 add("echasnovski/mini.completion")
 require("mini.completion").setup({
-	window = {
-		info = { border = "single" },
-		signature = { border = "single" },
-	},
-
 	fallback_action = "<C-x><C-n>",
 
 	mappings = {

@@ -6,6 +6,8 @@ vim.cmd.colorscheme("catppuccin-macchiato")
 
 -- opt.set("messagesopt", { "hit-enter", "history:500" })
 
+opt.set("winborder", "single")
+
 -- Always display sign column (diagnostics...)
 opt.set("signcolumn", "yes")
 

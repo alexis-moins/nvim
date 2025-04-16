@@ -1,24 +1,25 @@
 local add = MiniDeps.add
 
 --
--- Fugitive
---
--- add("tpope/vim-fugitive")
-
-
---
 -- mini.git
 --
 add("echasnovski/mini-git")
 require("mini.git").setup({})
 
 keys.map("n", "<C-G>", function()
-   MiniExtra.pickers.git_files({ scope='modified' })
+	MiniExtra.pickers.git_files({ scope = "modified" })
 end, "Find unstaged files (git)")
 
 keys.map("n", "<C-S>", function()
-    MiniPick.builtin.cli({ command = {"git", "diff", "--cached", "--name-only"} }, { source = { name = "Git files (staged)" } })
+	MiniPick.builtin.cli(
+		{ command = { "git", "diff", "--cached", "--name-only" } },
+		{ source = { name = "Git files (staged)" } }
+	)
 end, "Find staged files (git)")
+
+keys.map("n", "<Leader>ga", function()
+	vim.cmd("tab term git add --patch --interactive %")
+end, "Stage changes in the current buffer (git)")
 
 --
 -- mini.diff
