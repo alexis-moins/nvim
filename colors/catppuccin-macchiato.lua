@@ -215,8 +215,11 @@ hi(0, "DiagnosticVirtualLinesWarn", { bg = "#373744", fg = "#eed49f" })
 --
 hi(0, "DiffAdd", { bg = "#3b474a" })
 hi(0, "DiffDelete", { bg = "#48384b", fg = "#1e2030" })
-hi(0, "DiffChange", { bg = "#2b3047" })
-hi(0, "DiffText", { bg = "#434f72" })
+hi(0, "DiffChange", { fg = "#eed49f", bg = "#373744" }) -- MiniDiffOverContext
+hi(0, "DiffText", { underline = true }) -- MiniDiffOverChange
+
+-- hi(0, "DiffChange", { bg = "#303347", fg = "#6e738d" })
+-- hi(0, "DiffText", { bg = "#434f72" })
 
 hi(0, "Directory", { fg = "#8aadf4" })
 hi(0, "EndOfBuffer", { fg = "#24273a" })
@@ -421,11 +424,6 @@ hi(0, "MiniHipatternsTodo", { fg = "#eed49f" })
 hi(0, "MiniHipatternsNote", { fg = "#8aadf4" })
 hi(0, "MiniHipatternsFixme", { fg = "#ed8796" })
 hi(0, "MiniHipatternsDeprecate", { fg = "#f5a97f" })
-
---
--- mini.diff
---
-hi(0, "MiniDiffOverAdd", { fg = "#a6da95" })
 
 --
 -- mini.indentscope

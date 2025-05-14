@@ -31,7 +31,7 @@ require("mini.diff").setup({
 		signs = { add = "┃", change = "┃", delete = "┃" },
 		-- Default diagnostic priority is 10, so we set it to 9 to make sure it's
 		-- overriden by the diagnostic signs.
-		priority = 9,
+		-- priority = 9,
 	},
 })
 
