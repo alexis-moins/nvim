@@ -22,6 +22,26 @@ require("mini.ai").setup({
 		F = gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
 		P = gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
 		c = gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
-		s = gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
+
+		-- snake_case, camelCase, PascalCase...
+		s = {
+			{
+				-- PascalCaseWords (or the latter part of camelCaseWords)
+				"%u[%l%d]+%f[^%l%d]",
+
+				-- start of camelCaseWords (just the `camel`)
+				-- snake_case_words in lowercase
+				-- regular lowercase words
+				"%f[^%s%p][%l%d]+%f[^%l%d]",
+				"^[%l%d]+%f[^%l%d]",
+
+				-- SNAKE_CASE_WORDS in uppercase
+				-- Snake_Case_Words in titlecase
+				-- regular UPPERCASE words
+				"%f[^%s%p][%a%d]+%f[^%a%d]",
+				"^[%a%d]+%f[^%a%d]",
+			},
+			"^().*()$",
+		},
 	},
 })

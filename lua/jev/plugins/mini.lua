@@ -30,8 +30,10 @@ local function diagnostic(scope)
 	end
 end
 
+-- Diagnostics
 keys.map("n", "<Leader>w", diagnostic("all"), "Find diagnostic (all)")
-keys.map("n", "<Leader>d", diagnostic("current"), "Find diagnostic (current)")
+keys.map("n", "<Leader>d", diagnostic("current"), "Find diagnostic (buffer)")
+keys.map("n", "<Leader>_", vim.diagnostic.open_float, "Open current line diagnostic")
 
 --
 -- mini.pick

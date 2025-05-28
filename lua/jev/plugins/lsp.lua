@@ -2,10 +2,10 @@ local add = MiniDeps.add
 
 vim.diagnostic.config({
 	update_in_insert = true,
-	virtual_text = false,
-	virtual_lines = {
-		current_line = false,
-	},
+	virtual_text = true,
+	-- virtual_lines = {
+	-- 	current_line = false,
+	-- },
 	underline = false,
 	jump = { float = true },
 	signs = false,
@@ -35,7 +35,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"pyright",
 		"ts_ls",
-		"volar",
+		"vue_ls",
 	},
 })
 
@@ -55,6 +55,7 @@ event.autocmd("LspAttach", {
 		keys.maplocal("n", ";t", lsp("type_definition"), "Go to type definitions", buffer)
 
 		keys.maplocal("n", ";f", lsp("document_symbol"), "Find document symbol", buffer)
+		keys.maplocal("n", ";w", lsp("workspace_symbol"), "Find document symbol", buffer)
 
 		keys.maplocal("n", ";R", function()
 			local clients = vim.lsp.get_clients()
@@ -64,10 +65,6 @@ event.autocmd("LspAttach", {
 
 		keys.maplocal("n", ";c", vim.lsp.buf.code_action, "Code actions", buffer)
 		keys.maplocal("n", ";n", vim.lsp.buf.rename, "Rename", buffer)
-
-		keys.maplocal("n", "H", function()
-			vim.diagnostic.open_float(nil, { focus = false })
-		end, "Open diagnostics popup", buffer)
 	end,
 })
 

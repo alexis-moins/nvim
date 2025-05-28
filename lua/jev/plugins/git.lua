@@ -19,7 +19,9 @@ end, "Find staged files (git)")
 
 keys.map("n", "<Leader>ga", function()
 	vim.cmd("tab term git add --patch --interactive %")
-end, "Stage changes in the current buffer (git)")
+end, "Stage file (git)")
+
+-- bonjour
 
 --
 -- mini.diff

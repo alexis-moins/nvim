@@ -9,10 +9,7 @@ keys.map("n", "<Leader>so", vim.cmd.source, "Source current file")
 keys.map("n", "<Leader>o", vim.cmd.only, "Close all splits")
 keys.map("n", "<Leader>-", vim.cmd.bdelete, "Delete the current buffer")
 
-keys.map({ "n", "v" }, "j", "gj", "Move down (respects wrap)")
-keys.map({ "n", "v" }, "k", "gk", "Move up (respects wrap)")
-
--- Play @q macro and move to next line (recusrive)
+-- Play @q macro and move to next line (recursive)
 keys.map("n", "Q", "@qj", "Play macro")
 keys.map("x", "Q", "<cmd>norm @q<cr>", "Play macro")
 
@@ -20,8 +17,10 @@ keys.map("x", "Q", "<cmd>norm @q<cr>", "Play macro")
 keys.map("n", "J", "mzJ`z", "Join line below without moving cursor")
 
 -- Easier line navigation
-keys.map("n", "L", "$", "Go to the end of the line")
-keys.map("v", "L", "$", "Go to the end of the line (visual)")
+keys.map({ "n", "v" }, "L", "g$", "Go to the end of the line (respects wrap)")
+keys.map({ "n", "v" }, "H", "g^", "Go to the begining of the line (respects wrap)")
+keys.map({ "n", "v" }, "j", "gj", "Move down (respects wrap)")
+keys.map({ "n", "v" }, "k", "gk", "Move up (respects wrap)")
 
 keys.map("n", "<C-E>", "``", "To the postition before the latest jump")
 
