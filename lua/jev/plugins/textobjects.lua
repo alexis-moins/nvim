@@ -7,7 +7,7 @@ local add = MiniDeps.add
 --
 -- mini.ai
 --
-add("echasnovski/mini.ai")
+add("nvim-mini/mini.ai")
 
 local gen_spec = require("mini.ai").gen_spec
 

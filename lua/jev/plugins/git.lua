@@ -3,7 +3,7 @@ local add = MiniDeps.add
 --
 -- mini.git
 --
-add("echasnovski/mini-git")
+add("nvim-mini/mini-git")
 require("mini.git").setup({})
 
 keys.map("n", "<C-G>", function()
@@ -26,7 +26,7 @@ end, "Stage file (git)")
 --
 -- mini.diff
 --
-add("echasnovski/mini.diff")
+add("nvim-mini/mini.diff")
 require("mini.diff").setup({
 	view = {
 		style = "sign",

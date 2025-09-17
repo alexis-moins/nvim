@@ -3,7 +3,7 @@ local add = MiniDeps.add
 --
 -- mini.files
 --
-add("echasnovski/mini.files")
+add("nvim-mini/mini.files")
 require("mini.files").setup({
 	mappings = {
 		go_in_plus = "<CR>",

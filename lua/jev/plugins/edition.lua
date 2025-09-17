@@ -3,7 +3,7 @@ local add = MiniDeps.add
 --
 -- mini.pairs
 --
-add("echasnovski/mini.pairs")
+add("nvim-mini/mini.pairs")
 require("mini.pairs").setup({
 	modes = { insert = true, command = true, terminal = true },
 })
@@ -11,7 +11,7 @@ require("mini.pairs").setup({
 --
 -- mini.comment
 --
-add("echasnovski/mini.comment")
+add("nvim-mini/mini.comment")
 require("mini.comment").setup({
 	options = { ignore_blank_line = true },
 })
@@ -19,7 +19,7 @@ require("mini.comment").setup({
 --
 -- mini.move
 --
-add("echasnovski/mini.move")
+add("nvim-mini/mini.move")
 require("mini.move").setup({
 	mappings = {
 		-- Normal mode
@@ -39,7 +39,7 @@ require("mini.move").setup({
 --
 -- mini.surrounds
 --
-add("echasnovski/mini.surround")
+add("nvim-mini/mini.surround")
 require("mini.surround").setup({
 	custom_surroundings = {
 		["b"] = { output = { left = "(", right = ")" } },

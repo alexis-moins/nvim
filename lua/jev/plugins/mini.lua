@@ -3,7 +3,7 @@ local add = MiniDeps.add
 --
 -- mini.extra
 --
-add("echasnovski/mini.extra")
+add("nvim-mini/mini.extra")
 require("mini.extra").setup()
 
 -- Mappings
@@ -38,7 +38,7 @@ keys.map("n", "<Leader>_", vim.diagnostic.open_float, "Open current line diagnos
 --
 -- mini.pick
 --
-add("echasnovski/mini.pick")
+add("nvim-mini/mini.pick")
 require("mini.pick").setup({
 	source = {
 		show = require("mini.pick").default_show,
@@ -64,7 +64,7 @@ keys.map("n", "<Leader>*", "<cmd>Pick grep pattern='<cword>'<cr>", "Grep string 
 --
 -- mini.notify
 --
-add("echasnovski/mini.notify")
+add("nvim-mini/mini.notify")
 require("mini.notify").setup({
 	content = {
 		-- Use notification message as is
@@ -92,7 +92,7 @@ event.autocmd("RecordingLeave", { group = group, callback = MiniNotify.clear })
 --
 -- mini.bracketed
 --
-add("echasnovski/mini.bracketed")
+add("nvim-mini/mini.bracketed")
 require("mini.bracketed").setup({
 	buffer = { suffix = "" },
 	comment = { suffix = "" },
@@ -111,7 +111,7 @@ require("mini.bracketed").setup({
 
 --
 -- mini.jump
-add("echasnovski/mini.jump")
+add("nvim-mini/mini.jump")
 require("mini.jump").setup({
 	mappings = {
 		repeat_jump = ",",
@@ -125,25 +125,25 @@ require("mini.jump").setup({
 --
 -- mini.splitjoin
 --
-add("echasnovski/mini.splitjoin")
+add("nvim-mini/mini.splitjoin")
 require("mini.splitjoin").setup()
 
 --
 -- mini.operators
 --
-add("echasnovski/mini.operators")
+add("nvim-mini/mini.operators")
 require("mini.operators").setup()
 
 --
 -- mini.colors
 --
-add("echasnovski/mini.colors")
+add("nvim-mini/mini.colors")
 require("mini.colors").setup()
 
 --
 -- mini.hipatterns
 --
-add("echasnovski/mini.hipatterns")
+add("nvim-mini/mini.hipatterns")
 local hipatterns = require("mini.hipatterns")
 local words = MiniExtra.gen_highlighter.words
 
@@ -160,7 +160,7 @@ hipatterns.setup({
 --
 -- mini.tabline
 --
-add("echasnovski/mini.tabline")
+add("nvim-mini/mini.tabline")
 require("mini.tabline").setup({
 	format = function(buf_id, label)
 		local suffix = vim.bo[buf_id].modified and "[+] " or ""
@@ -171,7 +171,7 @@ require("mini.tabline").setup({
 --
 -- mini.indentscope
 --
-add("echasnovski/mini.indentscope")
+add("nvim-mini/mini.indentscope")
 require("mini.indentscope").setup({
 	symbol = "┃",
 })
@@ -179,5 +179,5 @@ require("mini.indentscope").setup({
 --
 -- mini.icons
 --
-add("echasnovski/mini.icons")
+add("nvim-mini/mini.icons")
 require("mini.icons").setup()

@@ -3,7 +3,7 @@ local add = MiniDeps.add
 --
 -- Snippets
 --
-add("echasnovski/mini.snippets")
+add("nvim-mini/mini.snippets")
 local snippet = require("mini.snippets")
 
 snippet.setup({
@@ -20,7 +20,7 @@ snippet.setup({
 --
 -- Completion
 --
-add("echasnovski/mini.completion")
+add("nvim-mini/mini.completion")
 require("mini.completion").setup({
 	fallback_action = "<C-x><C-n>",
 

@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(deps_path) then
 		"git",
 		"clone",
 		"--filter=blob:none",
-		"https://github.com/echasnovski/mini.deps",
+		"https://github.com/nvim-mini/mini.deps",
 		deps_path,
 	})
 

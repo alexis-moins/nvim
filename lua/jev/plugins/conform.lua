@@ -23,7 +23,7 @@ conform.setup({
 	},
 
 	-- Format after save to avoid performance issues with large files
-	format_after_save = {},
+	-- format_after_save = {},
 })
 
 -- Mappings

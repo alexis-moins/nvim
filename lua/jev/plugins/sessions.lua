@@ -3,7 +3,7 @@ local add = MiniDeps.add
 --
 -- mini.sessions
 --
-add("echasnovski/mini.sessions")
+add("nvim-mini/mini.sessions")
 require("mini.sessions").setup({
 	autowrite = false,
 	verbose = { read = true },
