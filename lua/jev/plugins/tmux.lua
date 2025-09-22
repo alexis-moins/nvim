@@ -9,3 +9,12 @@ keys.map("n", "<Leader>t", function()
 		vim.system({ "tmux", "attach-session", "-t", session_name }):wait()
 	end
 end, "Find tmux session")
+
+keys.map("n", "<Leader>tw", function()
+	if vim.env.TMUX then
+		vim.system({ "tmux", "split-window", "-h" }):wait()
+	else
+		print("Not inside tmux session")
+	end
+end, "Create new tmux pane on the right")
+

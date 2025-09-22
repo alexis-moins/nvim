@@ -17,3 +17,4 @@ require("jev.plugins.sessions")
 -- misc
 --
 require("jev.plugins.tmux")
+require("jev.plugins.claude-code")

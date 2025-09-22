@@ -28,6 +28,7 @@ keys.map("n", "<C-E>", "``", "To the postition before the latest jump")
 keys.map("n", "<Tab>", "<C-^>", "Edit alternate file")
 keys.map("n", "<Leader>bd", "mP<cmd>sil %bd<bar>e #<bar>bd #<CR>'P", "Close all buffers but current one")
 
+-- Scroll with centering
 keys.map("n", "<C-U>", "<C-U>zz", "Scroll upwards (center)")
 keys.map("n", "<C-D>", "<C-D>zz", "Scroll downwards (center)")
 
