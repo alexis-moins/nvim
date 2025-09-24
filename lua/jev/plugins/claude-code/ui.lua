@@ -12,8 +12,9 @@ function M.create_saveable_buffer(file_path)
 	vim.api.nvim_buf_set_option(buf, "buftype", "")
 	vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
 	vim.api.nvim_buf_set_option(buf, "swapfile", false)
+	-- Set filetype and trigger filetype detection/plugins
 	vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
-	vim.api.nvim_buf_set_option(buf, "spell", true)
+	vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
 	return buf
 end
 
@@ -71,6 +72,9 @@ function M.create_input_buffer(callback)
 		col = col,
 		title = " ClaudeCode Prompt ",
 	})
+
+	-- Start in insert mode
+	vim.cmd("startinsert")
 
 	M.setup_buffer_autocommands(buf, callback)
 end

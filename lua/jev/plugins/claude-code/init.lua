@@ -15,18 +15,20 @@ local function claude_code_handler(opts)
 	local needs_input = not opts.args or opts.args == ""
 
 	if needs_input then
+		-- Create empty input buffer for user prompt
 		ui.create_input_buffer(function(content)
-			-- Override args with user input from buffer
-			opts.args = content
-			local prompt_text = command.build_prompt(opts)
-			tmux.execute_claude_command(prompt_text)
+			-- Build full prompt with context when submitting
+			local context = command.build_context(opts) or ""
+			local full_prompt = context .. (context ~= "" and "\n\n" or "") .. content
+			tmux.execute_claude_command(full_prompt)
 		end)
 		return
 	end
 
-	-- Direct execution path for when args are provided
-	local prompt_text = command.build_prompt(opts)
-	tmux.execute_claude_command(prompt_text)
+	-- For direct commands, build full prompt with context
+	local context = command.build_context(opts) or ""
+	local prompt = context .. (context ~= "" and "\n\n" or "") .. opts.args
+	tmux.execute_claude_command(prompt)
 end
 
 vim.api.nvim_create_user_command("ClaudeCode", claude_code_handler, {

@@ -2,9 +2,15 @@
 
 local M = {}
 
--- Build file context string with path and optional line range information
+-- Build file context string with path and optional line range information using XML tags
 function M.build_context(opts)
 	local file_path = vim.fn.expand("%:p")
+
+	-- Return nil if no file is loaded (empty path or unnamed buffer)
+	if file_path == "" or vim.fn.expand("%") == "" then
+		return nil
+	end
+
 	local relative_path = vim.fn.fnamemodify(file_path, ":.")
 
 	if opts.range > 0 then
@@ -25,3 +31,4 @@ function M.build_prompt(opts)
 end
 
 return M
+

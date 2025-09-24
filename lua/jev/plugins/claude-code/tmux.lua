@@ -24,8 +24,12 @@ function M.pane_exists(pane_id)
 end
 
 -- Send text to a tmux pane and press Enter to execute it
-function M.send_to_pane(pane_id, text)
-	vim.system({ "tmux", "send-keys", "-t", pane_id, text, "C-m" }):wait()
+function M.send_to_pane(text)
+	if not M.pane_exists(M.claude_pane_id) then
+		vim.notify("Claude pane no longer exists", vim.log.levels.WARN)
+		return
+	end
+	vim.system({ "tmux", "send-keys", "-t", M.claude_pane_id, text, "Enter" }):wait()
 end
 
 -- Escape single quotes in shell arguments to prevent command injection
@@ -56,15 +60,21 @@ end
 -- Handle interaction with existing Claude pane: send prompt if provided, then focus
 function M.handle_existing_pane(prompt_text)
 	if prompt_text and prompt_text ~= "" then
-		M.send_to_pane(M.claude_pane_id, prompt_text)
+		M.send_to_pane(prompt_text)
 	end
 	M.focus_claude_pane(M.claude_pane_id)
 end
 
 -- Create a new Claude pane with optional initial prompt
-function M.handle_new_pane(prompt_text)
+function M.handle_new_pane(prompt)
 	M.claude_pane_id = nil
-	M.create_claude_pane(prompt_text)
+
+	-- Only send the user prompt without exploration message
+	if prompt and prompt ~= "" then
+		M.create_claude_pane(prompt)
+	else
+		M.create_claude_pane()
+	end
 end
 
 -- Execute Claude command with given prompt
