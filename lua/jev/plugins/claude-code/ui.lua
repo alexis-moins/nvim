@@ -52,7 +52,7 @@ function M.setup_buffer_autocommands(buf, callback)
 end
 
 -- Create a saveable buffer for user input in a floating window
-function M.create_input_buffer(callback)
+function M.create_prompt_buffer(callback)
 	local file_path = M.CACHE_FILE
 
 	local buf = M.create_saveable_buffer(file_path)
