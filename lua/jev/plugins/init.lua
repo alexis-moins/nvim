@@ -8,7 +8,6 @@ require("jev.plugins.git")
 require("jev.plugins.lsp")
 require("jev.plugins.completion")
 require("jev.plugins.conform")
-require("jev.plugins.ai")
 require("jev.plugins.explorer")
 require("jev.plugins.edition")
 require("jev.plugins.sessions")
@@ -16,5 +15,4 @@ require("jev.plugins.sessions")
 --
 -- misc
 --
-require("jev.plugins.tmux")
 require("jev.plugins.claude-code")

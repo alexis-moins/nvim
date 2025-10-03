@@ -9,12 +9,15 @@ M.CACHE_FILE = "/tmp/claude-prompt.md"
 function M.create_saveable_buffer(file_path)
 	local buf = vim.api.nvim_create_buf(false, false)
 	vim.api.nvim_buf_set_name(buf, file_path)
-	vim.api.nvim_buf_set_option(buf, "buftype", "")
-	vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
-	vim.api.nvim_buf_set_option(buf, "swapfile", false)
+
+	vim.bo[buf].buftype = ""
+	vim.bo[buf].bufhidden = "wipe"
+	vim.bo[buf].swapfile = false
+
 	-- Set filetype and trigger filetype detection/plugins
-	vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
+	vim.bo[buf].filetype = "markdown"
 	vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
+
 	return buf
 end
 
@@ -41,7 +44,7 @@ function M.setup_buffer_autocommands(buf, callback)
 	})
 
 	-- Handle cleanup on close
-	vim.api.nvim_create_autocmd({"BufWinLeave", "BufHidden"}, {
+	vim.api.nvim_create_autocmd({ "BufWinLeave", "BufHidden" }, {
 		group = augroup,
 		buffer = buf,
 		once = true,

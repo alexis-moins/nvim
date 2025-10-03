@@ -18,24 +18,28 @@ function M.build_context(selection)
 	local relative_path = vim.fn.fnamemodify(file_path, ":.")
 
 	if selection and selection.from and selection.to then
-		return string.format("In file @%s (lines %d-%d)", relative_path, selection.from, selection.to)
+		return string.format("@%s (%d-%d)", relative_path, selection.from, selection.to)
 	else
-		return string.format("In file @%s", relative_path)
+		return string.format("@%s", relative_path)
 	end
 end
 
 --- Build complete prompt by combining file context with user input
 ---@param user_prompt string The user's prompt text
----@param selection Selection|nil Visual selection range, or nil for no context
+---@param selection Selection|boolean|nil Visual selection range, true to include full file context, false/nil for no context
 ---@return string Complete prompt with optional context
 function M.build_prompt(user_prompt, selection)
-	-- Only include context if user made a visual selection
-	if selection then
-		local context = M.build_context(selection)
+	-- Don't include context if selection is false or nil
+	if selection == false or selection == nil then
+		return user_prompt
+	end
 
-		if context then
-			return string.format("%s\n\n%s", context, user_prompt)
-		end
+	-- If selection is true, include full file context
+	-- If selection is a table, include context with line range
+	local context = M.build_context(type(selection) == "table" and selection or nil)
+
+	if context then
+		return string.format("%s\n\n%s", context, user_prompt)
 	end
 
 	return user_prompt

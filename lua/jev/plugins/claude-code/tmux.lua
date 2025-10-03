@@ -29,7 +29,7 @@ function M.send_to_pane(text)
 		vim.notify("Claude pane no longer exists", vim.log.levels.WARN)
 		return
 	end
-	vim.system({ "tmux", "send-keys", "-t", M.claude_pane_id, text, "Enter" }):wait()
+	vim.system({ "tmux", "send-keys", "-t", M.claude_pane_id, text }):wait()
 end
 
 -- Escape single quotes in shell arguments to prevent command injection
