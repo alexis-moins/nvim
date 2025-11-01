@@ -1,2 +1,2 @@
-opt.setlocal('wrap', true)
-opt.setlocal('spell', true)
+-- opt.setlocal('wrap', true)
+-- opt.setlocal('spell', true)
