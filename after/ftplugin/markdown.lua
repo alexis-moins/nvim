@@ -1,2 +1,2 @@
--- opt.setlocal('wrap', true)
--- opt.setlocal('spell', true)
+vim.wo.wrap = true
+vim.wo.spell = true

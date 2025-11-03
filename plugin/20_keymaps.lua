@@ -7,10 +7,7 @@
 -- General ====================================================================
 
 -- Use this section to add custom general mappings. See `:h vim.keymap.set()`.
-
-local map = function(mode, lhs, rhs, desc)
-	vim.keymap.set(mode, lhs, rhs, { desc = desc })
-end
+local map = _G.Config.map
 
 map("i", "jk", "<Esc>", "Leave insert mode")
 map("n", "<C-E>", "<C-^>", "Edit alternate file")
@@ -41,7 +38,7 @@ map("n", "c#", '#``"_cgN', "Backward replace word under cursor (dot respeatable)
 map("n", "d*", '*``"_dgn', "Delete word under cursor (dot repeatable)")
 map("n", "d#", '#``"_dgN', "Backward delete word under cursor (dot respeatable)")
 
-map("n", "H", "<C-W>d", "")
+map("n", "H", "<Cmd>lua vim.diagnostic.open_float()<CR>", "")
 
 -- Plugins ====================================================================
 

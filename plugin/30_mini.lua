@@ -301,3 +301,24 @@ later(function()
 	add("nvim-mini/mini.splitjoin")
 	require("mini.splitjoin").setup()
 end)
+
+-- Special key mappings. Provides helpers to map:
+-- - Multi-step actions. Apply action 1 if condition is met; else apply
+--   action 2 if condition is met; etc.
+-- - Combos. Sequence of keys where each acts immediately plus execute extra
+--   action if all are typed fast enough. Useful for Insert mode mappings to not
+--   introduce delay when typing mapping keys without intention to execute action.
+later(function()
+	add("nvim-mini/mini.keymap")
+	require("mini.keymap").setup()
+
+	-- Navigate completion menu and snippets with `<Tab>` /  `<S-Tab>`
+	MiniKeymap.map_multistep("i", "<Tab>", { "minisnippets_next", "minisnippets_expand", "pmenu_next" })
+	MiniKeymap.map_multistep("i", "<S-Tab>", { "minisnippets_prev", "pmenu_prev" })
+
+	-- On `<CR>` try to accept current completion item, fall back to accounting
+	-- for pairs from 'mini.pairs'
+	MiniKeymap.map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
+	-- On `<BS>` just try to account for pairs from 'mini.pairs'
+	MiniKeymap.map_multistep("i", "<BS>", { "minipairs_bs" })
+end)

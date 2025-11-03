@@ -60,7 +60,7 @@ if not vim.loop.fs_stat(deps_path) then
 end
 
 -- Plugin manager. Set up immediately for `now()`/`later()` helpers.
-require('mini.deps').setup()
+require("mini.deps").setup()
 
 -- Define config table to be able to pass data between scripts
 _G.Config = {}
@@ -68,13 +68,21 @@ _G.Config = {}
 -- Define custom autocommand group and helper to create an autocommand.
 -- Autocommands are Neovim's way to define actions that are executed on events
 -- (like creating a buffer, setting an option, etc.).
-local gr = vim.api.nvim_create_augroup('UserConfig', {})
+local gr = vim.api.nvim_create_augroup("UserConfig", {})
 
 _G.Config.new_autocmd = function(event, pattern, callback, desc)
-  local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
-  vim.api.nvim_create_autocmd(event, opts)
+	local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
+	vim.api.nvim_create_autocmd(event, opts)
 end
 
 -- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
 -- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
 _G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
+
+_G.Config.map = function(mode, lhs, rhs, desc)
+	vim.keymap.set(mode, lhs, rhs, { desc = desc })
+end
+
+_G.Config.lmap = function(mode, lhs, rhs, desc)
+	vim.keymap.set(mode, lhs, rhs, { desc = desc, buffer = true })
+end
