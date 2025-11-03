@@ -79,9 +79,7 @@ now_if_args(function()
 	vim.lsp.enable({
 		"lua_ls",
 		"pyright",
-
 		"ts_ls",
-
 		-- Since v3.0.0, the Vue language server requires vtsls to support typescript
 		"vtsls",
 		"vue_ls",

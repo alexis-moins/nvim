@@ -3,16 +3,8 @@
 -- └────────────────────┘
 --
 -- This file contains configuration of the MINI parts of the config.
--- It contains only configs for the 'mini.nvim' plugin (installed in 'init.lua').
+-- It contains only configs for the '.vim-mini' plugins.lua').
 --
--- 'mini.nvim' is a library of modules. Each is enabled independently via
--- `require('mini.xxx').setup()` convention. It creates all intended side effects:
--- mappings, autocommands, highlight groups, etc. It also creates a global
--- `MiniXxx` table that can be later used to access module's features.
---
--- Every module's `setup()` function accepts an optional `config` table to
--- adjust its behavior. See the structure of this table at `:h MiniXxx.config`.
-
 -- To minimize the time until first screen draw, modules are enabled in two steps:
 -- - Step one enables everything that is needed for first draw with `now()`.
 --   Sometimes is needed only if Neovim is started as `nvim -- path/to/file`.
@@ -64,16 +56,16 @@ later(function()
 			-- For more complicated textobjects that require structural awareness,
 			-- use tree-sitter. This example makes `aF`/`iF` mean around/inside function
 			-- definition (not call). See `:h MiniAi.gen_spec.treesitter()` for details.
-			F = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+			f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
 		},
 
 		-- 'mini.ai' by default mostly mimics built-in search behavior: first try
 		-- to find textobject covering cursor, then try to find to the right.
-		-- Although this wor                                              ks in most cases, some are confusing. It is more robust to
+		-- Although this works in most cases, some are confusing. It is more robust to
 		-- always try to search only covering textobject and explicitly ask to search
 		-- for next (`an`/`in`) or last (`al`/`il`).
-		-- Try this. If you don't li                                      ke it - delete next line and this comment.
-		search_method = "cover",
+		-- Try this. If you don't like it - delete next line and this comment.
+		-- search_method = "cover",
 	})
 end)
 
@@ -100,6 +92,7 @@ later(function()
 			-- Although not needed, setting up through `:h 'omnifunc'` is cleaner
 			-- (sets up only when needed) and makes it possible to use `<C-u>`.
 			source_func = "omnifunc",
+
 			auto_setup = false,
 			process_items = process_items,
 		},
@@ -113,11 +106,9 @@ later(function()
 	})
 
 	-- Set 'omnifunc' for LSP completion only when needed.
-	local on_attach = function(ev)
+	Config.new_autocmd("LspAttach", nil, function(ev)
 		vim.bo[ev.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
-	end
-
-	_G.Config.new_autocmd("LspAttach", nil, on_attach, "Set 'omnifunc'")
+	end)
 
 	-- Advertise to servers that Neovim now supports certain set of completion and
 	-- signature features through 'mini.completion'.
@@ -160,12 +151,6 @@ end)
 --   and return back to the final tabstop.
 -- - To end a snippet session when at final tabstop, keep typing or go into
 --   Normal mode. To force end snippet session, press `<C-c>`.
---
--- See also:
--- - `:h MiniSnippets-overview` - overview of how module works
--- - `:h MiniSnippets-examples` - examples of common setups
--- - `:h MiniSnippets-session` - details about snippet session
--- - `:h MiniSnippets.gen_loader` - list of available loaders
 later(function()
 	add("nvim-mini/mini.snippets")
 	local snippets = require("mini.snippets")
@@ -263,7 +248,7 @@ end)
 -- - Act on visual selection (type operator in Visual mode)
 later(function()
 	add("nvim-mini/mini.operators")
-	require("mini.operators").setup()
+	require("mini.operators").setup({ replace = { prefix = "cr" } })
 end)
 
 -- Autopairs functionality. Insert pair when typing opening character and go over
@@ -313,12 +298,26 @@ later(function()
 	require("mini.keymap").setup()
 
 	-- Navigate completion menu and snippets with `<Tab>` /  `<S-Tab>`
-	MiniKeymap.map_multistep("i", "<Tab>", { "minisnippets_next", "minisnippets_expand", "pmenu_next" })
-	MiniKeymap.map_multistep("i", "<S-Tab>", { "minisnippets_prev", "pmenu_prev" })
+	MiniKeymap.map_multistep("i", "<Tab>", {
+		"minisnippets_next",
+		"pmenu_next",
+	})
+
+	MiniKeymap.map_multistep("i", "<S-Tab>", {
+		"minisnippets_prev",
+		"pmenu_prev",
+	})
 
 	-- On `<CR>` try to accept current completion item, fall back to accounting
 	-- for pairs from 'mini.pairs'
-	MiniKeymap.map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
+	MiniKeymap.map_multistep("i", "<CR>", {
+		"pmenu_accept",
+		"minipairs_cr",
+	})
+
 	-- On `<BS>` just try to account for pairs from 'mini.pairs'
 	MiniKeymap.map_multistep("i", "<BS>", { "minipairs_bs" })
+
+	-- MiniKeymap.map_combo({ "n", "x" }, "jj", "}")
+	-- MiniKeymap.map_combo({ "n", "x" }, "kk", "{")
 end)
