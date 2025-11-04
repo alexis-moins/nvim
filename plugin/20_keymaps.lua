@@ -46,6 +46,16 @@ map("n", "H", "<Cmd>lua vim.diagnostic.open_float()<CR>", "Open diagnostic popup
 map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Substitute cword in buffer")
 map("v", "g.", '"zy:%s/<C-R>z//gc<left><left><left>', "Substitute cword in buffer")
 
+map("n", "<C-S>a", "<Cmd>argadd %<Bar>argdedup<Bar>args<CR>")
+map("n", "<C-S>d", "<Cmd>argdelete %<Bar>args<CR>")
+
+map("n", "<C-S>e", "<Cmd>args<CR>")
+
+map("n", "<C-S>h", "<Cmd>silent! 1argument<CR>")
+map("n", "<C-S>j", "<Cmd>silent! 2argument<CR>")
+map("n", "<C-S>k", "<Cmd>silent! 3argument<CR>")
+map("n", "<C-S>l", "<Cmd>silent! 4argument<CR>")
+
 -- Toggle =====================================================================
 
 local function toggle(option)
