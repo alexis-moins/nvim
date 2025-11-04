@@ -20,6 +20,8 @@
 -- Use `<Space>` as <Leader> key
 vim.g.mapleader = ' '
 
+-- vim.o.timeout = false
+
 vim.o.mouse       = 'a'            -- Enable mouse
 vim.o.mousescroll = 'ver:25,hor:6' -- Customize mouse scroll
 vim.o.switchbuf   = 'usetab'       -- Use already opened buffers when switching

@@ -18,14 +18,14 @@ map("n", "<S-Tab>", "<Cmd>tabprevious<CR>", "Navigate to previous tab")
 map("n", "<BS>", "<Cmd>nohlsearch<CR>", "Clear search highlighting")
 map("n", "<Leader>so", "<Cmd>source %<CR>", "Source current file")
 
-map("n", "<Leader>o", "<Cmd>only<CR>", "Close all splits")
+map("n", "<Leader>o", "mP<cmd>sil %bd<bar>e #<bar>bd #<CR>'P", "Close all buffers but current one")
 map("n", "<Leader>-", "<Cmd>bdelete<CR>", "Delete the current buffer")
 
 map({ "n", "v" }, "j", "gj", "Move down (respects wrap)")
 map({ "n", "v" }, "k", "gk", "Move up (respects wrap)")
 
-map("n", "<C-U>", "<C-U>zz", "Scroll upwards (center)")
-map("n", "<C-D>", "<C-D>zz", "Scroll downwards (center)")
+map("n", "<C-U>", "{", "Scroll upwards (center)")
+map("n", "<C-D>", "}", "Scroll downwards (center)")
 
 map("n", "n", "nzz", "Repeat last search (center)")
 map("n", "N", "Nzz", "Repeat last search in opposite direction (center)")
@@ -41,23 +41,61 @@ map("n", "c#", '#``"_cgN', "Backward replace word under cursor (dot respeatable)
 map("n", "d*", '*``"_dgn', "Delete word under cursor (dot repeatable)")
 map("n", "d#", '#``"_dgN', "Backward delete word under cursor (dot respeatable)")
 
-map("n", "H", "<Cmd>lua vim.diagnostic.open_float()<CR>", "")
+map("n", "H", "<Cmd>lua vim.diagnostic.open_float()<CR>", "Open diagnostic popup")
+
+map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Substitute cword in buffer")
+map("v", "g.", '"zy:%s/<C-R>z//gc<left><left><left>', "Substitute cword in buffer")
+
+-- Toggle =====================================================================
+
+local function toggle(option)
+	return function()
+		local opt = vim.opt_local[option]:get()
+		vim.opt_local[option] = not opt
+	end
+end
+
+map("n", [[\w]], toggle("wrap"), "Toggle line wrapping")
+map("n", [[\n]], toggle("number"), "Toggle line number")
+map("n", [[\s]], toggle("spell"), "Toggle spell checking")
+
+map("n", [[\d]], "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle diff overlay")
+map("n", [[\g]], "<Cmd>lua MiniDiff.toggle()<CR>", "Toggle git signs")
+
+map("n", [[\q]], function()
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			-- Close quickfix window if opened
+			vim.cmd.cclose()
+			return
+		end
+	end
+
+	vim.cmd.copen()
+end, "Toggle quickfix")
 
 -- LSP ========================================================================
 
 Config.new_autocmd("LspAttach", nil, function(args)
-	maplocal("n", "<Leader>ld", "<Cmd>Pick lsp scope='definition'<CR>", "Go to definitions")
+	vim.cmd("nnoremap <nowait> gr gr")
 
-	maplocal("n", "<Leader>lr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
-	maplocal("n", "<Leader>lt", "<Cmd>Pick lsp scope='type_definition'<CR>", "Go to type definitions")
+	maplocal("n", "gd", "<Cmd>Pick lsp scope='definition'<CR>", "Go to definition")
+	maplocal("n", "grr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
 
-	maplocal("n", "<Leader>lc", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Execute code action")
-	maplocal("n", "<Leader>ln", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
+	maplocal("n", "gt", "<Cmd>Pick lsp scope='type_definition'<CR>", "Go to type definitions")
 
-	maplocal("n", "<Leader>lf", "<Cmd>Pick lsp scope='document_symbol'<CR>", "Find document symbol")
-	maplocal("n", "<Leader>lw", "<Cmd>Pick lsp scope='workspace_symbol'<CR>", "Find workspace symbol")
+	maplocal("n", "ga", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Execute code action")
+	maplocal("n", "grn", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
 
-	maplocal("n", "<Leader>lR", "<Cmd>LspRestart<CR>", "Restart LSP")
+	maplocal("n", "gO", "<Cmd>Pick lsp scope='document_symbol'<CR>", "Find document symbol")
+
+	maplocal("n", "gw", '<Cmd>Pick diagnostic scope="all"<CR>', "Find workspace diagnostic")
+
+	maplocal("n", "gD", '<Cmd>Pick diagnostic scope="current"<CR>', "Find buffer diagnostic")
+
+	-- maplocal("n", "<Leader>lw", "<Cmd>Pick lsp scope='workspace_symbol'<CR>", "Find workspace symbol")
+
+	maplocal("n", "<Leader>lr", "<Cmd>LspRestart<CR>", "Restart LSP")
 	maplocal("n", "<Leader>li", "<Cmd>LspInfo<CR>", "Show LSP info")
 end)
 
@@ -81,6 +119,3 @@ map("n", "-", "<Cmd>lua MiniFiles.open(vim.fn.expand('%'))<CR>", "Open file expl
 map("n", "+", "<Cmd>lua MiniFiles.open()<CR>", "Open file explorer (cwd)")
 
 map("n", "=", "<Cmd>lua require('conform').format()<CR>", "Format file")
-
-map("n", [[\d]], "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle diff overlay")
-map("n", [[\g]], "<Cmd>lua MiniDiff.toggle()<CR>", "Toggle git signs")
