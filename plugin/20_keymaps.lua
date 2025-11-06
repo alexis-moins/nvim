@@ -86,16 +86,19 @@ end, "Toggle quickfix")
 
 -- LSP ========================================================================
 
-Config.new_autocmd("LspAttach", nil, function(args)
-	vim.cmd("nnoremap <nowait> gr gr")
+-- Unmap default lsp keymaps
+for _, key in pairs({ "gra", "gri", "grn", "grr", "grt" }) do
+	vim.keymap.del({ "n" }, key)
+end
 
+Config.new_autocmd("LspAttach", nil, function(args)
 	maplocal("n", "gd", "<Cmd>Pick lsp scope='definition'<CR>", "Go to definition")
-	maplocal("n", "grr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
+	maplocal("n", "gr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
 
 	maplocal("n", "gt", "<Cmd>Pick lsp scope='type_definition'<CR>", "Go to type definitions")
 
 	maplocal("n", "ga", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Execute code action")
-	maplocal("n", "grn", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
+	maplocal("n", "gN", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
 
 	maplocal("n", "gO", "<Cmd>Pick lsp scope='document_symbol'<CR>", "Find document symbol")
 

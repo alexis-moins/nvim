@@ -86,7 +86,7 @@ vim.o.showmode = false
 vim.o.showcmd = false
 
 -- Completely hide the command-line unless it is being used (EXPERIMENTAL)
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0
 
 vim.o.pumheight = 10         -- Make popup menu smaller
 
@@ -211,7 +211,7 @@ local diagnostic_opts = {
   },
 
   -- Don't update diagnostics when typing
-  update_in_insert = false,
+  update_in_insert = true,
 }
 
 -- Use `later()` to avoid sourcing `vim.diagnostic` on startup
