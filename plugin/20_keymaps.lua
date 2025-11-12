@@ -1,4 +1,4 @@
--- vim: fdm=marker
+-- vim: fdm=marker fdl=0 fdls=0
 --
 -- ┌─────────────────┐
 -- │ Custom mappings │
@@ -88,38 +88,37 @@ map("n", [[\q]], function()
 	vim.cmd.copen()
 end, "Toggle quickfix")
 
--- LSP ========================================================================
-
--- Unmap default lsp keymaps
-for _, key in pairs({ "gra", "gri", "grn", "grr", "grt" }) do
-	vim.keymap.del({ "n" }, key)
-end
+-- {{{ LSP (<Leader>l)
 
 Config.new_autocmd("LspAttach", nil, function(args)
-	maplocal("n", "gd", "<Cmd>Pick lsp scope='definition'<CR>", "Go to definition")
-	maplocal("n", "gr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
+	maplocal("n", "<Leader>ld", "<Cmd>Pick lsp scope='definition'<CR>", "Go to definition")
+	maplocal("n", "<Leader>lr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
 
-	maplocal("n", "gt", "<Cmd>Pick lsp scope='type_definition'<CR>", "Go to type definitions")
+	maplocal("n", "<Leader>lt", "<Cmd>Pick lsp scope='type_definition'<CR>", "Go to type definitions")
 
-	maplocal("n", "ga", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Execute code action")
-	maplocal("n", "gN", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
+	maplocal("n", "<Leader>la", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Execute code action")
+	maplocal("n", "<Leader>ln", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
 
-	maplocal("n", "gO", "<Cmd>Pick lsp scope='document_symbol'<CR>", "Find document symbol")
+	maplocal("n", "<Leader>lO", "<Cmd>Pick lsp scope='document_symbol'<CR>", "Find document symbol")
 
-	maplocal("n", "gw", '<Cmd>Pick diagnostic scope="all"<CR>', "Find workspace diagnostic")
+	maplocal("n", "<Leader>lw", '<Cmd>Pick diagnostic scope="all"<CR>', "Find workspace diagnostic")
 
-	maplocal("n", "gD", '<Cmd>Pick diagnostic scope="current"<CR>', "Find buffer diagnostic")
+	maplocal("n", "<Leader>lD", '<Cmd>Pick diagnostic scope="current"<CR>', "Find buffer diagnostic")
 
 	-- maplocal("n", "<Leader>lw", "<Cmd>Pick lsp scope='workspace_symbol'<CR>", "Find workspace symbol")
 
-	maplocal("n", "<Leader>lr", "<Cmd>LspRestart<CR>", "Restart LSP")
+	maplocal("n", "<Leader>lR", "<Cmd>LspRestart<CR>", "Restart LSP")
 	maplocal("n", "<Leader>li", "<Cmd>LspInfo<CR>", "Show LSP info")
 end)
+
+-- }}}
 
 -- Plugins ====================================================================
 
 map("n", "<Leader><Space>", "<Cmd>Pick files<CR>", "Find files")
 map("n", "<C-b>", "<Cmd>Pick buffers<CR>", "Find buffers")
+
+map("n", "<Leader>*", "<Cmd>Pick resume<CR>", "Resume last picker")
 
 map("n", "<Leader>fg", "<Cmd>Pick grep_live<CR>", "Grep files")
 
@@ -137,11 +136,10 @@ map("n", "+", "<Cmd>lua MiniFiles.open()<CR>", "Open file explorer (cwd)")
 
 map("n", "=", "<Cmd>lua require('conform').format()<CR>", "Format file")
 
--- {{{ Git (<Leader> + g)
+-- {{{ Git (<Leader>g)
 
 map("n", "<Leader>gu", "<Cmd>Pick git_files scope='modified'<CR>", "Find unstaged files")
 map("n", "<Leader>gs", "<Cmd>Pick git_files scope='staged'<CR>", "Find staged files")
 map("n", "<Leader>gU", "<Cmd>Pick git_files scope='untracked'<CR>", "Find untracked files")
 
 -- }}}
-

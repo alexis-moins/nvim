@@ -204,11 +204,7 @@ require("mini.move").setup({
 
 -- Operators ==================================================================
 
-require("mini.operators").setup({
-	replace = {
-		prefix = "cr",
-	},
-})
+require("mini.operators").setup()
 
 -- Pairs ======================================================================
 
