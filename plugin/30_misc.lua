@@ -1,11 +1,3 @@
--- vim: foldmethod=marker foldlevel=0 foldlevelstart=0
---
--- ┌─────────┐
--- │ Plugins │
--- └─────────┘
---
--- local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-
 local specs = {
 	-- Mini Plugins
 	"https://github.com/nvim-mini/mini.hues",
@@ -77,18 +69,83 @@ require("mini.extra").setup()
 
 -- Textobjects ================================================================
 
-local ai = require("mini.ai")
+local ts_ai = require("mini.ai").gen_spec.treesitter
+local extra_ai = require("mini.extra").gen_ai_spec
 
-ai.setup({
-	-- 'mini.ai' can be extended with custom textobjects
+require("mini.ai").setup({
 	custom_textobjects = {
-		-- Make `aB` / `iB` act on around/inside whole *b*uffer
-		B = MiniExtra.gen_ai_spec.buffer(),
+		-- Disable brackets alis in favor of builtin block textobject
+		b = false,
+
+		-- Make ar/ir select [] blocks
+		r = { "%b[]", "^.().*().$" },
+
+		-- Textobjects derived from mini.extra
+		e = extra_ai.buffer(),
+		L = extra_ai.line(),
 
 		-- For more complicated textobjects that require structural awareness,
-		-- use tree-sitter. This example makes `aF`/`iF` mean around/inside function
-		-- definition (not call). See `:h MiniAi.gen_spec.treesitter()` for details.
-		f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+		-- use tree-sitter.
+		f = ts_ai({ a = "@call.outer", i = "@call.inner" }),
+		P = ts_ai({ a = "@parameter.outer", i = "@parameter.inner" }),
+		c = ts_ai({ a = "@comment.outer", i = "@comment.inner" }),
+
+		-- snake_case, camelCase, PascalCase...
+		s = {
+			{
+				-- PascalCaseWords (or the latter part of camelCaseWords)
+				"%u[%l%d]+%f[^%l%d]",
+
+				-- start of camelCaseWords (just the `camel`)
+				-- snake_case_words in lowercase
+				-- regular lowercase words
+				"%f[^%s%p][%l%d]+%f[^%l%d]",
+				"^[%l%d]+%f[^%l%d]",
+
+				-- SNAKE_CASE_WORDS in uppercase
+				-- Snake_Case_Words in titlecase
+				-- regular UPPERCASE words
+				"%f[^%s%p][%a%d]+%f[^%a%d]",
+				"^[%a%d]+%f[^%a%d]",
+			},
+			"^().*()$",
+		},
+	},
+})
+
+-- Surround ===================================================================
+
+local ts_input = require("mini.surround").gen_spec.input.treesitter
+
+require("mini.surround").setup({
+	custom_surroundings = {
+		-- Match builtin block ai textobjects
+		["b"] = {
+			input = { "%b()", "^.().*().$" },
+			output = { left = "(", right = ")" },
+		},
+
+		["B"] = {
+			input = { "%b{}", "^.().*().$" },
+			output = { left = "{", right = "}" },
+		},
+
+		["r"] = {
+			input = { "%b[]", "^.().*().$" },
+			output = { left = "[", right = "]" },
+		},
+
+		-- For more complicated textobjects that require structural awareness,
+		-- use tree-sitter.
+		f = {
+			input = ts_input({ outer = "@call.outer", inner = "@call.inner" }),
+		},
+		P = {
+			input = ts_input({ outer = "@parameter.outer", inner = "@parameter.inner" }),
+		},
+		c = {
+			input = ts_input({ outer = "@comment.outer", inner = "@comment.inner" }),
+		},
 	},
 })
 
@@ -230,65 +287,22 @@ MiniPick.registry.git_files = function(local_opts)
 	return MiniExtra.pickers.git_files(local_opts)
 end
 
--- Surround ===================================================================
-
-require("mini.surround").setup()
-
 -- Splitjoin ==================================================================
 
 require("mini.splitjoin").setup()
 
--- Special key mappings. Provides helpers to map:
--- - Multi-step actions. Apply action 1 if condition is met; else apply
---   action 2 if condition is met; etc.
--- - Combos. Sequence of keys where each acts immediately plus execute extra
---   action if all are typed fast enough. Useful for Insert mode mappings to not
---   introduce delay when typing mapping keys without intention to execute action.
--- later(function()
--- 	add("nvim-mini/mini.keymap")
--- 	require("mini.keymap").setup()
---
--- 	-- Navigate completion menu and snippets with `<Tab>` /  `<S-Tab>`
--- 	MiniKeymap.map_multistep("i", "<Tab>", {
--- 		"minisnippets_next",
--- 		"pmenu_next",
--- 	})
---
--- 	MiniKeymap.map_multistep("i", "<S-Tab>", {
--- 		"minisnippets_prev",
--- 		"pmenu_prev",
--- 	})
---
--- 	-- On `<CR>` try to accept current completion item, fall back to accounting
--- 	-- for pairs from 'mini.pairs'
--- 	MiniKeymap.map_multistep("i", "<CR>", {
--- 		"pmenu_accept",
--- 		"minipairs_cr",
--- 	})
---
--- 	-- On `<BS>` just try to account for pairs from 'mini.pairs'
--- 	MiniKeymap.map_multistep("i", "<BS>", { "minipairs_bs" })
---
--- 	-- MiniKeymap.map_combo({ "n", "x" }, "jj", "}")
--- 	-- MiniKeymap.map_combo({ "n", "x" }, "kk", "{")
--- end)
-
 -- Tree-sitter ================================================================
 
--- require("nvim-treesitter.configs").setup({
--- 	auto_install = true,
--- 	sync_install = false,
---
--- 	highlight = {
--- 		enable = true,
--- 		additional_vim_regex_highlighting = false,
---
--- 		disable = function(_, bufnr)
--- 			-- Disable in files with more than 5K
--- 			return vim.api.nvim_buf_line_count(bufnr) > 5000
--- 		end,
--- 	},
--- })
+-- Auto-install these language parsers
+require("nvim-treesitter").install({
+	"html",
+	"css",
+	"scss",
+
+	"vue",
+	"javascript",
+	"typescript",
+})
 
 -- Language servers ===========================================================
 
@@ -296,6 +310,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"pyright",
 	"ts_ls",
+
 	-- Since v3.0.0, the Vue language server requires vtsls to support typescript
 	"vtsls",
 	"vue_ls",

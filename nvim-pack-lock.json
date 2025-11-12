@@ -13,7 +13,7 @@
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.completion": {
-      "rev": "581934b",
+      "rev": "7c5edfc",
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {
@@ -25,7 +25,7 @@
       "src": "https://github.com/nvim-mini/mini.extra"
     },
     "mini.files": {
-      "rev": "dce9a4e",
+      "rev": "26baa62",
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "mini.hipatterns": {
@@ -45,7 +45,7 @@
       "src": "https://github.com/nvim-mini/mini.move"
     },
     "mini.notify": {
-      "rev": "895630b",
+      "rev": "135dcfd",
       "src": "https://github.com/nvim-mini/mini.notify"
     },
     "mini.operators": {
@@ -57,7 +57,7 @@
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "mini.pick": {
-      "rev": "08a7220",
+      "rev": "fe1c25e",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "mini.snippets": {
@@ -73,16 +73,16 @@
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "nvim-lspconfig": {
-      "rev": "2010fc6",
+      "rev": "c8503e6",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "0a6817bc",
+      "rev": "b5077407",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "7024f86",
+      "rev": "06c00bc",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     }

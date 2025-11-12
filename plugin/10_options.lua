@@ -7,6 +7,7 @@
 -- Use `<Space>` as <Leader> key
 vim.g.mapleader = " "
 
+-- Wait undefinitely for keymaps
 vim.o.timeout = false
 
 vim.o.switchbuf = "usetab" -- Use already opened buffers when switching

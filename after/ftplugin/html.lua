@@ -1,4 +1,4 @@
-vim.bo.wrap = true
+vim.wo.wrap = true
 
--- Usefull to prevent wrapping inside of classes
+-- Prevent wrapping in the middle of class names
 vim.opt_local.breakat:remove({ "-", ":" })

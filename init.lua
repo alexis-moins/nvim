@@ -1,9 +1,5 @@
--- Define config table to be able to pass data between scripts
 _G.Config = {}
 
--- Define custom autocommand group and helper to create an autocommand.
--- Autocommands are Neovim's way to define actions that are executed on events
--- (like creating a buffer, setting an option, etc.).
 local gr = vim.api.nvim_create_augroup("UserConfig", {})
 
 _G.Config.new_autocmd = function(event, pattern, callback, desc)
