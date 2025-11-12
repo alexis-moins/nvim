@@ -17,7 +17,7 @@ keys.map("n", "<Leader>o", vim.cmd.only, "Close all splits")
 -- keys.map("n", "J", "mzJ`z", "Join line below without moving cursor")
 
 -- Easier line navigation
-keys.map({ "n", "v" }, "L", "g$", "Go to the end of the line (respects wrap)")
+-- keys.map({ "n", "v" }, "L", "g$", "Go to the end of the line (respects wrap)")
 keys.map({ "n", "v" }, "H", "g^", "Go to the begining of the line (respects wrap)")
 -- keys.map({ "n", "v" }, "j", "gj", "Move down (respects wrap)")
 -- keys.map({ "n", "v" }, "k", "gk", "Move up (respects wrap)")

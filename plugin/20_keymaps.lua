@@ -1,3 +1,5 @@
+-- vim: fdm=marker
+--
 -- ┌─────────────────┐
 -- │ Custom mappings │
 -- └─────────────────┘
@@ -20,6 +22,8 @@ map("n", "<Leader>so", "<Cmd>source %<CR>", "Source current file")
 
 map("n", "<Leader>o", "mP<cmd>sil %bd<bar>e #<bar>bd #<CR>'P", "Close all buffers but current one")
 map("n", "<Leader>-", "<Cmd>bdelete<CR>", "Delete the current buffer")
+
+map({ "n", "v" }, "L", "g$", "Go to the end of the line (respects wrap)")
 
 map({ "n", "v" }, "j", "gj", "Move down (respects wrap)")
 map({ "n", "v" }, "k", "gk", "Move up (respects wrap)")
@@ -46,15 +50,15 @@ map("n", "H", "<Cmd>lua vim.diagnostic.open_float()<CR>", "Open diagnostic popup
 map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Substitute cword in buffer")
 map("v", "g.", '"zy:%s/<C-R>z//gc<left><left><left>', "Substitute cword in buffer")
 
-map("n", "<C-S>a", "<Cmd>argadd %<Bar>argdedup<Bar>args<CR>")
-map("n", "<C-S>d", "<Cmd>argdelete %<Bar>args<CR>")
+map("n", "<Leader>ha", "<Cmd>argadd %<Bar>argdedup<Bar>args<CR>")
+map("n", "<Leader>hd", "<Cmd>argdelete %<Bar>args<CR>")
 
-map("n", "<C-S>e", "<Cmd>args<CR>")
+map("n", "<Leader>he", "<Cmd>args<CR>")
 
-map("n", "<C-S>h", "<Cmd>silent! 1argument<CR>")
-map("n", "<C-S>j", "<Cmd>silent! 2argument<CR>")
-map("n", "<C-S>k", "<Cmd>silent! 3argument<CR>")
-map("n", "<C-S>l", "<Cmd>silent! 4argument<CR>")
+map("n", "<Leader>hh", "<Cmd>silent! 1argument<CR>")
+map("n", "<Leader>hj", "<Cmd>silent! 2argument<CR>")
+map("n", "<Leader>hk", "<Cmd>silent! 3argument<CR>")
+map("n", "<Leader>hl", "<Cmd>silent! 4argument<CR>")
 
 -- Toggle =====================================================================
 
@@ -132,3 +136,12 @@ map("n", "-", "<Cmd>lua MiniFiles.open(vim.fn.expand('%'))<CR>", "Open file expl
 map("n", "+", "<Cmd>lua MiniFiles.open()<CR>", "Open file explorer (cwd)")
 
 map("n", "=", "<Cmd>lua require('conform').format()<CR>", "Format file")
+
+-- {{{ Git (<Leader> + g)
+
+map("n", "<Leader>gu", "<Cmd>Pick git_files scope='modified'<CR>", "Find unstaged files")
+map("n", "<Leader>gs", "<Cmd>Pick git_files scope='staged'<CR>", "Find staged files")
+map("n", "<Leader>gU", "<Cmd>Pick git_files scope='untracked'<CR>", "Find untracked files")
+
+-- }}}
+

@@ -1,33 +1,19 @@
--- ┌──────────────────────────┐
--- │ Built-in Neovim behavior │
--- └──────────────────────────┘
---
--- This file defines Neovim's built-in behavior. The goal is to improve overall
--- usability in a way that works best with MINI.
---
--- Here `vim.o.xxx = value` sets default value of option `xxx` to `value`.
--- See `:h 'xxx'` (replace `xxx` with actual option name).
---
--- Option values can be customized on per buffer or window basis.
--- See 'after/ftplugin/' for common example.
-
--- stylua: ignore start
--- The next part (until `-- stylua: ignore end`) is aligned manually for easier
--- reading. Consider preserving this or remove `-- stylua` lines to autoformat.
+-- ┌─────────┐
+-- │ Options │
+-- └─────────┘
 
 -- General ====================================================================
 
 -- Use `<Space>` as <Leader> key
 vim.g.mapleader = ' '
 
--- vim.o.timeout = false
+vim.o.timeout = false
 
-vim.o.mouse       = 'a'            -- Enable mouse
-vim.o.mousescroll = 'ver:25,hor:6' -- Customize mouse scroll
 vim.o.switchbuf   = 'usetab'       -- Use already opened buffers when switching
 
 -- Enable persistent undo
 vim.o.undofile = true
+
 -- Disable swapfiles
 vim.o.swapfile = false
 
@@ -43,8 +29,8 @@ vim.o.sidescrolloff = 8
 vim.cmd('filetype plugin indent on')
 if vim.fn.exists('syntax_on') ~= 1 then vim.cmd('syntax enable') end
 
--- UI =========================================================================
-vim.o.colorcolumn    = '+1'       -- Draw column on the right of maximum width
+-- Draw column on the right of maximum width
+vim.o.colorcolumn = '+1'
 
 -- Enable current line highlighting
 vim.o.cursorline = true
@@ -234,5 +220,4 @@ local diagnostic_opts = {
   update_in_insert = true,
 }
 
--- Use `later()` to avoid sourcing `vim.diagnostic` on startup
-MiniDeps.later(function() vim.diagnostic.config(diagnostic_opts) end)
+vim.diagnostic.config(diagnostic_opts)

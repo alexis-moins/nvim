@@ -1,67 +1,3 @@
--- ┌────────────────────┐
--- │ Welcome to MiniMax │
--- └────────────────────┘
---
--- This is a config designed to mostly use MINI. It provides out of the box
--- a stable, polished, and feature rich Neovim experience. Its structure:
---
--- ├ init.lua          Initial (this) file executed during startup
--- ├ plugin/           Files automatically sourced during startup
--- ├── 10_options.lua  Built-in Neovim behavior
--- ├── 20_keymaps.lua  Custom mappings
--- ├── 30_mini.lua     MINI configuration
--- ├── 40_plugins.lua  Plugins outside of MINI
--- ├ snippets/         User defined snippets (has demo file)
--- ├ after/            Files to override behavior added by plugins
--- ├── ftplugin/       Files for filetype behavior (has demo file)
--- ├── lsp/            Language server configurations (has demo file)
--- ├── snippets/       Higher priority snippet files (has demo file)
---
--- Config files are meant to be read, preferably inside a Neovim instance running
--- this config and opened at its root. This will help you better understand your
--- setup. Start with this file. Any order is possible, prefer the one listed above.
--- Ways of navigating your config:
--- - `<Space>` + `e` + (one of) `iokmp` - edit 'init.lua' or 'plugin/' files.
--- - Inside config directory: `<Space>ff` (picker) or `<Space>ed` (explorer)
--- - Navigate existing buffers with `[b`, `]b`, or `<Space>fb`.
---
--- Config files are also meant to be customized. Initially it is a baseline of
--- a working config based on MINI. Modify it to make it yours. Some approaches:
--- - Modify already existing files in a way that keeps them consistent.
--- - Add new files in a way that keeps config consistent.
---   Usually inside 'plugin/' or 'after/'.
---
--- Documentation comments like this can be found throughout the config.
--- Common conventions:
---
--- - See `:h key-notation` for key notation used.
--- - `:h xxx` means "documentation of helptag xxx". Either type text directly
---   followed by Enter or type `<Space>fh` to open a helptag fuzzy picker.
--- - "Type `<Space>fh`" means "press <Space>, followed by f, followed by h".
---   Unless said otherwise, it assumes that Normal mode is current.
--- - "See 'path/to/file'" means see open file at described path and read it.
--- - `:SomeCommand ...` or `:lua ...` means execute mentioned command.
-
--- Bootstrap 'mini.nvim' manually in a way that it gets managed by 'mini.deps'
-local package_path = vim.fn.stdpath("data") .. "/site"
-local deps_path = package_path .. "/pack/deps/start/mini.deps"
-
-if not vim.loop.fs_stat(deps_path) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/nvim-mini/mini.deps",
-		deps_path,
-	})
-
-	vim.cmd.packadd("mini.deps | helptags ALL")
-	vim.cmd.echo('"Installed `mini.deps`" | redraw')
-end
-
--- Plugin manager. Set up immediately for `now()`/`later()` helpers.
-require("mini.deps").setup()
-
 -- Define config table to be able to pass data between scripts
 _G.Config = {}
 
@@ -75,10 +11,6 @@ _G.Config.new_autocmd = function(event, pattern, callback, desc)
 	vim.api.nvim_create_autocmd(event, opts)
 end
 
--- Some plugins and 'mini.nvim' modules only need setup during startup if Neovim
--- is started like `nvim -- path/to/file`, otherwise delaying setup is fine
-_G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
-
 _G.Config.map = function(mode, lhs, rhs, desc)
 	vim.keymap.set(mode, lhs, rhs, { desc = desc })
 end
@@ -86,3 +18,46 @@ end
 _G.Config.maplocal = function(mode, lhs, rhs, desc, buffer)
 	vim.keymap.set(mode, lhs, rhs, { desc = desc, buffer = buffer or true })
 end
+
+Config.new_autocmd("FileType", "*", function()
+	local ok = pcall(vim.treesitter.start)
+
+	if not ok then
+		vim.notify("Failed to start treesitter", vim.log.levels.WARN)
+	end
+end)
+
+-- Show 'cursorline' in current buffer
+Config.new_autocmd({ "WinEnter", "BufEnter" }, nil, function()
+	vim.wo.cursorline = true
+end)
+
+-- Hide 'cursorline' in other buffers
+Config.new_autocmd({ "WinLeave", "BufLeave" }, nil, function()
+	vim.wo.cursorline = false
+end)
+
+-- Resize splits when terminal resizes
+Config.new_autocmd("VimResized", nil, function()
+	vim.cmd.tabdo("wincmd =")
+end)
+
+-- Highlight on yank
+Config.new_autocmd("TextYankPost", nil, function()
+	vim.highlight.on_yank({
+		higroup = "Visual",
+		timeout = 200,
+		on_visual = false,
+	})
+end)
+
+Config.new_autocmd("FileType", {
+	"markdown",
+	"html",
+	"vue",
+	"javascriptreact",
+	"typescriptreact",
+}, function()
+	MiniPairs.map_buf(0, "i", "<", { action = "open", pair = "<>", register = { cr = false } })
+	MiniPairs.map_buf(0, "i", ">", { action = "close", pair = "<>", register = { cr = false } })
+end)
