@@ -187,9 +187,29 @@ vim.opt.completeopt = { 'menuone', 'noselect', 'fuzzy', 'nosort'}
 -- Don't auto-wrap comments and don't insert comment leader after hitting 'o'.
 -- Do on `FileType` to always override these changes from filetype plugins.
 local f = function() vim.cmd('setlocal formatoptions-=c formatoptions-=o') end
-_G.Config.new_autocmd('FileType', nil, f, "Proper 'formatoptions'")
+Config.new_autocmd('FileType', nil, f, "Proper 'formatoptions'")
 
--- There are other autocommands created by 'mini.basics'. See 'plugin/30_mini.lua'.
+-- Show cursorline when entering buffer or window
+Config.new_autocmd({ "WinEnter", "BufEnter"}, nil, function()
+    vim.wo.cursorline = true
+end)
+
+-- Hide cursorline when leaving buffer or window
+Config.new_autocmd({ "WinLeave", "BufLeave"}, nil, function()
+    vim.wo.cursorline = false
+end)
+
+Config.new_autocmd("TextYankPost", nil, function()
+    vim.highlight.on_yank({
+        higroup = "Visual",
+        timeout = 200,
+        on_visual = false,
+    })
+end)
+
+Config.new_autocmd("VimResized", nil, function()
+    vim.cmd("tabdo wincmd =")
+end)
 
 -- Diagnostics ================================================================
 
