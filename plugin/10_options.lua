@@ -1,9 +1,3 @@
--- ┌─────────┐
--- │ Options │
--- └─────────┘
-
--- General ====================================================================
-
 -- Use `<Space>` as <Leader> key
 vim.g.mapleader = " "
 
@@ -30,7 +24,7 @@ vim.o.sidescrolloff = 8
 vim.cmd("filetype plugin indent on")
 
 if vim.fn.exists("syntax_on") ~= 1 then
-	vim.cmd("syntax enable")
+    vim.cmd("syntax enable")
 end
 
 -- Draw column on the right of maximum width
@@ -108,12 +102,10 @@ vim.opt.fillchars = { eob = " ", foldclose = "›", foldsep = " ", diff = "╱" 
 vim.opt.listchars = { extends = "…", nbsp = "␣", precedes = "…", tab = "· ", trail = "—" }
 
 -- Folds (see `:h fold-commands`, `:h zM`, `:h zR`, `:h zA`, `:h zj`)
-vim.o.foldlevel = 10 -- Fold nothing by default; set to 0 or 1 to fold
+vim.o.foldlevel = 10        -- Fold nothing by default; set to 0 or 1 to fold
 vim.o.foldmethod = "indent" -- Fold based on indent level
-vim.o.foldnestmax = 10 -- Limit number of fold levels
-vim.o.foldtext = "" -- Show text under fold with its highlighting
-
--- Editing ====================================================================
+vim.o.foldnestmax = 10      -- Limit number of fold levels
+vim.o.foldtext = ""         -- Show text under fold with its highlighting
 
 -- List of directories to search with :find, :sfind, :tabfind...
 vim.o.path = ".,,**"
@@ -164,58 +156,54 @@ vim.opt.iskeyword:append("-")
 -- possibly followed by punctuation (. or `)`) followed by at least one space".
 vim.o.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 
--- Built-in completion =======================================================
-
 -- Use less completion sources
 vim.opt.complete = { ".", "w", "b", "kspell" }
 
 -- Use custom behavior
 vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "nosort" }
 
--- Autocommands ===============================================================
-
 -- Don't auto-wrap comments and don't insert comment leader after hitting 'o'.
 -- Do on `FileType` to always override these changes from filetype plugins.
 local f = function()
-	vim.cmd("setlocal formatoptions-=c formatoptions-=o")
+    vim.cmd("setlocal formatoptions-=c formatoptions-=o")
 end
 Config.new_autocmd("FileType", nil, f, "Proper 'formatoptions'")
 
 -- Show cursorline when entering buffer or window
 Config.new_autocmd({ "WinEnter", "BufEnter" }, nil, function()
-	vim.wo.cursorline = true
+    vim.wo.cursorline = true
 end)
 
 -- Hide cursorline when leaving buffer or window
 Config.new_autocmd({ "WinLeave", "BufLeave" }, nil, function()
-	vim.wo.cursorline = false
+    vim.wo.cursorline = false
 end)
 
 Config.new_autocmd("TextYankPost", nil, function()
-	vim.highlight.on_yank({
-		higroup = "Visual",
-		timeout = 200,
-		on_visual = false,
-	})
+    vim.highlight.on_yank({
+        higroup = "Visual",
+        timeout = 200,
+        on_visual = false,
+    })
 end)
 
 Config.new_autocmd("VimResized", nil, function()
-	vim.cmd("tabdo wincmd =")
+    vim.cmd("tabdo wincmd =")
 end)
 
 Config.new_autocmd("FileType", {
-	"html",
-	"vue",
-	"javascript",
-	"typescript",
+    "html",
+    "vue",
+    "javascript",
+    "typescript",
 }, function()
-	MiniPairs.map_buf(0, "i", "<", { action = "open", pair = "<>", register = { cr = false } })
-	MiniPairs.map_buf(0, "i", ">", { action = "close", pair = "<>", register = { cr = false } })
+    MiniPairs.map_buf(0, "i", "<", { action = "open", pair = "<>", register = { cr = false } })
+    MiniPairs.map_buf(0, "i", ">", { action = "close", pair = "<>", register = { cr = false } })
 end)
 
 -- Try to start treesitter for each filetype (silently)
 Config.new_autocmd("FileType", "*", function()
-	pcall(vim.treesitter.start)
+    pcall(vim.treesitter.start)
 end)
 
 -- Diagnostics ================================================================
@@ -224,21 +212,21 @@ end)
 -- a more conservative display while still being useful.
 -- See `:h vim.diagnostic` and `:h vim.diagnostic.config()`.
 local diagnostic_opts = {
-	-- Show signs on top of any other sign, but only for warnings and errors
-	signs = { priority = 9999, severity = { min = "WARN", max = "ERROR" } },
+    -- Show signs on top of any other sign, but only for warnings and errors
+    signs = { priority = 9999, severity = { min = "WARN", max = "ERROR" } },
 
-	-- Show all diagnostics as underline (for their messages type `<Leader>ld`)
-	underline = { severity = { min = "HINT", max = "ERROR" } },
+    -- Show all diagnostics as underline (for their messages type `<Leader>ld`)
+    underline = { severity = { min = "HINT", max = "ERROR" } },
 
-	-- Show more details immediately for errors
-	virtual_lines = false,
-	virtual_text = {
-		-- current_line = true,
-		severity = { min = "ERROR", max = "ERROR" },
-	},
+    -- Show more details immediately for errors
+    virtual_lines = false,
+    virtual_text = {
+        -- current_line = true,
+        severity = { min = "ERROR", max = "ERROR" },
+    },
 
-	-- Don't update diagnostics when typing
-	update_in_insert = true,
+    -- Don't update diagnostics when typing
+    update_in_insert = true,
 }
 
 vim.diagnostic.config(diagnostic_opts)

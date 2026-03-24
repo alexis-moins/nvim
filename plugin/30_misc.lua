@@ -16,6 +16,7 @@ local specs = {
 	"https://github.com/nvim-mini/mini.pick",
 	"https://github.com/nvim-mini/mini.surround",
 	"https://github.com/nvim-mini/mini.splitjoin",
+	"https://github.com/nvim-mini/mini.cmdline",
 
 	-- Other plugins
 	{
@@ -31,7 +32,7 @@ local specs = {
 	"https://github.com/stevearc/conform.nvim",
 }
 
-vim.pack.add(specs, { load = true })
+vim.pack.add(specs, { load = true, confirm = false })
 
 -- Run `:TSUpdate`
 Config.new_autocmd("PackChanged", nil, function(event)
@@ -43,6 +44,10 @@ Config.new_autocmd("PackChanged", nil, function(event)
 		end
 	end
 end)
+
+-- Cmdline ====================================================================
+
+require("mini.cmdline").setup()
 
 -- Hues =======================================================================
 

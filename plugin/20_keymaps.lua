@@ -50,23 +50,17 @@ map("n", "H", "<Cmd>lua vim.diagnostic.open_float()<CR>", "Open diagnostic popup
 map("n", "g.", ":%s/<C-R><C-W>//gc<left><left><left>", "Substitute cword in buffer")
 map("v", "g.", '"zy:%s/<C-R>z//gc<left><left><left>', "Substitute cword in buffer")
 
-map("n", "<Leader>ha", "<Cmd>argadd %<Bar>argdedup<Bar>args<CR>")
-map("n", "<Leader>hd", "<Cmd>argdelete %<Bar>args<CR>")
+map("n", "<Leader>cd", "<Cmd>cd %:h<CR>", "Set working directory to current file's directory")
 
-map("n", "<Leader>he", "<Cmd>args<CR>")
-
-map("n", "<Leader>hh", "<Cmd>silent! 1argument<CR>")
-map("n", "<Leader>hj", "<Cmd>silent! 2argument<CR>")
-map("n", "<Leader>hk", "<Cmd>silent! 3argument<CR>")
-map("n", "<Leader>hl", "<Cmd>silent! 4argument<CR>")
+map("n", "<Leader>pu", "<Cmd>lua vim.pack.update()<CR>")
 
 -- Toggle =====================================================================
 
 local function toggle(option)
-	return function()
-		local opt = vim.opt_local[option]:get()
-		vim.opt_local[option] = not opt
-	end
+    return function()
+        local opt = vim.opt_local[option]:get()
+        vim.opt_local[option] = not opt
+    end
 end
 
 map("n", [[\w]], toggle("wrap"), "Toggle line wrapping")
@@ -77,38 +71,38 @@ map("n", [[\d]], "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle diff overlay"
 map("n", [[\g]], "<Cmd>lua MiniDiff.toggle()<CR>", "Toggle git signs")
 
 map("n", [[\q]], function()
-	for _, win in pairs(vim.fn.getwininfo()) do
-		if win.quickfix == 1 then
-			-- Close quickfix window if opened
-			vim.cmd.cclose()
-			return
-		end
-	end
+    for _, win in pairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            -- Close quickfix window if opened
+            vim.cmd.cclose()
+            return
+        end
+    end
 
-	vim.cmd.copen()
+    vim.cmd.copen()
 end, "Toggle quickfix")
 
 -- {{{ LSP (<Leader>l)
 
 Config.new_autocmd("LspAttach", nil, function(args)
-	maplocal("n", "<Leader>ld", "<Cmd>Pick lsp scope='definition'<CR>", "Go to definition")
-	maplocal("n", "<Leader>lr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
+    maplocal("n", "<Leader>ld", "<Cmd>Pick lsp scope='definition'<CR>", "Go to definition")
+    maplocal("n", "<Leader>lr", "<Cmd>Pick lsp scope='references'<CR>", "Go to references")
 
-	maplocal("n", "<Leader>lt", "<Cmd>Pick lsp scope='type_definition'<CR>", "Go to type definitions")
+    maplocal("n", "<Leader>lt", "<Cmd>Pick lsp scope='type_definition'<CR>", "Go to type definitions")
 
-	maplocal("n", "<Leader>la", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Execute code action")
-	maplocal("n", "<Leader>ln", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
+    maplocal("n", "<Leader>la", "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Execute code action")
+    maplocal("n", "<Leader>ln", "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol under cursor")
 
-	maplocal("n", "<Leader>lO", "<Cmd>Pick lsp scope='document_symbol'<CR>", "Find document symbol")
+    maplocal("n", "<Leader>lO", "<Cmd>Pick lsp scope='document_symbol'<CR>", "Find document symbol")
 
-	maplocal("n", "<Leader>lw", '<Cmd>Pick diagnostic scope="all"<CR>', "Find workspace diagnostic")
+    maplocal("n", "<Leader>lw", '<Cmd>Pick diagnostic scope="all"<CR>', "Find workspace diagnostic")
 
-	maplocal("n", "<Leader>lD", '<Cmd>Pick diagnostic scope="current"<CR>', "Find buffer diagnostic")
+    maplocal("n", "<Leader>lD", '<Cmd>Pick diagnostic scope="current"<CR>', "Find buffer diagnostic")
 
-	-- maplocal("n", "<Leader>lw", "<Cmd>Pick lsp scope='workspace_symbol'<CR>", "Find workspace symbol")
+    -- maplocal("n", "<Leader>lw", "<Cmd>Pick lsp scope='workspace_symbol'<CR>", "Find workspace symbol")
 
-	maplocal("n", "<Leader>lR", "<Cmd>LspRestart<CR>", "Restart LSP")
-	maplocal("n", "<Leader>li", "<Cmd>LspInfo<CR>", "Show LSP info")
+    maplocal("n", "<Leader>lR", "<Cmd>LspRestart<CR>", "Restart LSP")
+    maplocal("n", "<Leader>li", "<Cmd>LspInfo<CR>", "Show LSP info")
 end)
 
 -- }}}
