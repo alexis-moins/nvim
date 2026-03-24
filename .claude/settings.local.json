@@ -1,9 +1,0 @@
-{
-  "outputStyle": "default",
-  "spinnerTipsEnabled": false,
-  "permissions": {
-    "allow": [
-      "Bash(nvim:*)"
-    ]
-  }
-}
